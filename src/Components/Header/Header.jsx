@@ -4,7 +4,6 @@ import "./header.css";
 import { AuthContext } from "../../Provider/Provider";
 import { getAuth } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
-import { Tooltip } from "react-tooltip";
 
 const auth = getAuth(app);
 const Header = () => {
@@ -133,12 +132,12 @@ const Header = () => {
                   />
                 </div>
               </div>
-              <Tooltip className="z-[99999999] hidden lg:block bg-white" anchorSelect="#clickable" clickable>
+              <div className="z-[99999999] hidden lg:block bg-white">
                 <h1 className="text-white hidden lg:block text-xl font-extrabold">
                   {user.displayName}
                 </h1>
                 <button className="btn capitalize rounded-none" onClick={() => logOut(auth)}>click me to logout!</button>
-              </Tooltip>
+              </div>
               <ul
                 tabIndex={999}
                 className="menu menu-sm lg:hidden dropdown-content lg:mt-40 z-[999] p-2 shadow bg-base-100 rounded-box w-52"

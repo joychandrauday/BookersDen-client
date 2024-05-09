@@ -1,0 +1,59 @@
+.swiper {
+    width: 100%;
+    height: 100%;
+  }
+  
+  .swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background: #fff;
+  
+    /* Center slide text vertically */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .slideheight{
+    height: 100vh !important;
+    background:linear-gradient(to bottom, rgb(0, 0, 0), rgba(57, 53, 53, 0.5)), url('https://i.ibb.co/bL2xbYT/pexels-leo-willians-789496294-19365740.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    padding-top: 50px;
+  }
+  
+  .slide2{
+    background:linear-gradient(to bottom, rgb(0, 0, 0), rgba(57, 53, 53, 0.5)), url('https://i.ibb.co/f0gTBDS/pexels-bri-schneiter-28802-346529.jpg');
+  }
+  .slide3{
+    background:linear-gradient(to bottom, rgb(0, 0, 0), rgba(57, 53, 53, 0.5)), url('https://i.ibb.co/x7r3mbJ/pexels-raybilcliff-6195821.jpg');
+  }
+  .swiper-slide img{
+    width: 100%;
+  }
+
+  .countryCard:hover .countryElement{
+    display: flex;
+  }
+  @media (max-width: 576px) { 
+    .slideheight{
+      height: 50vh !important;
+      display: flex;
+      align-items: center;
+    }
+    .slideheight p{
+      font-size: 12px !important;
+    }
+    
+  }
+  @media (min-width: 768px) {
+    .countryElement{
+      backdrop-filter: brightness(.5);
+    }
+    .slideheight{
+      height: 50vh  ;
+      display: flex !important;
+      align-items: center;
+    }
+  
+  }
