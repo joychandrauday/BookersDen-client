@@ -12,6 +12,8 @@ import SignUp from '../Pages/SignUp/SignUp';
 import AddBook from '../Pages/AddBook/AddBook';
 import PrivateRoute from './../Private Route/PrivateRoute';
 import AllBooks from '../Pages/AllBooks/AllBooks';
+import BorrowedBooks from '../Pages/BorrowedBooks/BorrowedBooks';
+import LibrarianReg from '../Pages/LibrarianRegister/LibrarianReg';
 
 const router = createBrowserRouter([
     {
@@ -32,6 +34,10 @@ const router = createBrowserRouter([
           element: <SignUp></SignUp>,
         },
         {
+          path: "/librarian-registration",
+          element: <LibrarianReg></LibrarianReg>,
+        },
+        {
           path: "/all-books",
           element:<PrivateRoute><AllBooks></AllBooks></PrivateRoute> ,
         },
@@ -40,8 +46,8 @@ const router = createBrowserRouter([
           element:<PrivateRoute><AddBook></AddBook></PrivateRoute> ,
         },
         {
-          path: "/borrowed-book",
-          element:<PrivateRoute><AddBook></AddBook></PrivateRoute> ,
+          path: "/borrowed-books",
+          element:<PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute> ,
         },
       ],
     },

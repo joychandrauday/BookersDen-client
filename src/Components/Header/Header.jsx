@@ -29,6 +29,12 @@ const Header = () => {
       <li>
         <NavLink to={"/add-book"}>Add Book</NavLink>
       </li>
+      <li>
+        <NavLink to={"/all-books"}>All Books</NavLink>
+      </li>
+      <li>
+        <NavLink to={"/borrowed-books"}>Borrowed Books</NavLink>
+      </li>
     </>
   );
   const navLinks = (
@@ -36,14 +42,11 @@ const Header = () => {
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      <li>
-        <NavLink to={"/all-books"}>All Books</NavLink>
-      </li>
       {user ? <div className="lg:flex">{navLinksPrivate}</div> : ""}
     </>
   );
   return (
-    <div className="backdrop-blur-xl fixed w-full text-white">
+    <div className="backdrop-blur-xl fixed w-full ">
       <div className="navbar container mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown">
@@ -71,13 +74,13 @@ const Header = () => {
             </ul>
           </div>
           <NavLink to={"/"} className="logo relative text-xl flex items-center">
-            <h1 className="z-50 bg-black bg-opacity-30 capitalize font-bold lg:text-white lg:text-2xl">
+            <h1 className="z-50 capitalize font-bold lg:text-white lg:text-2xl">
               bookers den.
             </h1>
             <img
               src="https://i.ibb.co/x2bS9Fs/Animation-1715270691756.gif"
               alt=""
-              className="absolute z-10 lg:left-0"
+              className="absolute z-10 lg:left-24 "
             />
           </NavLink>
         </div>

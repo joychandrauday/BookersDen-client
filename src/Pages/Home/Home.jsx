@@ -6,7 +6,8 @@ import "./styles.css";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import { FaCirclePlay } from "react-icons/fa6";
+import { FaUserPlus } from "react-icons/fa6";
+
 // import required modules
 import { Autoplay, Navigation } from "swiper/modules"; 
 import { Helmet } from "react-helmet-async";
@@ -40,28 +41,19 @@ const Home = () => {
             <SwiperSlide className="slideheight slide1" >
             <div>
                 <div className="slider-container container mx-auto lg:flex items-center justify-center text-left capitalize p-12 lg:pl-24">
-                <div className="left-text basis-1/2">
-                    <h1 className="font-bold text-2xl lg:text-5xl text-white">your one stop tourism solution
+                <div className="left-text text-center">
+                    <img src="https://i.ibb.co/McLzr4x/2.gif" alt="" className="sslideInm w-96 mx-auto rounded-md shadow-lg mb-5" />
+                    <h1 className="font-bold text-2xl  lg:text-5xl text-white">a vibrant center dedicated to the exploration of knowledge through the pages of books.
                     </h1>
                     <p className="my-4 text-white">Empower travelers with innovative tools and seamless solutions to enhance their journey from start to finish.
                     </p>
-                    <div className="flex items-center gap-2">
-                    <Link to={"/all-spots"} className="btn bg-basic rounded-none text-white border-none hover:text-basic">view destinations</Link>
-                    <Link to={"/contact"} className="btn btn-outline border border-gray-300 hover:glass hover:text-white text-white
-                    rounded-full "><FaCirclePlay />set a date</Link>
+                    <div className="flex items-center gap-2 justify-center">
+                    <Link to={"/all-books"} className="btn bg-basic rounded-none text-white border-none hover:text-basic hover:text-white">borrow books</Link>
+                    <Link to={"/librarian-registration"} className="btn btn-outline border border-gray-300 hover:bg-white hover:text-black  text-white
+                    rounded-none"><FaUserPlus /> join as librarian</Link>
                     </div>
                 </div>
-                <div className="right-video basis-1/2 lg:flex items-center justify-center hidden">
-                    <div className="relative">
-                        <img
-                        className="w-96"
-                        src="https://i.ibb.co/FgZV1x1/32226183-m001t0309-b-5-star-rating-30aug22-removebg-preview.png"
-                        alt="" 
-                        />
-                        <h1 className="font-extrabold uppercase  text-yellow-400 absolute bottom-32 left-24 text-2xl px-4 w-full   rounded-full">top class sevice.<br></br><span className="text-xl capitalize italic font-light">with <span className="text-xl px-2 bg-basic font-bold">97%</span> client satisfition</span></h1>
-                        
-                    </div>
-                </div>
+                
                 </div>
             </div>
             </SwiperSlide>
@@ -69,20 +61,18 @@ const Home = () => {
             <div className="flex min-h-screen">
                 <div className="slider-container container mx-auto lg:flex items-center justify-center text-left capitalize p-12 lg:pl-24">
                 <div className="left-text basis-1/2">
-                    <h1 className="font-bold text-2xl lg:text-5xl text-white">
-                    convenience with enthusiasm.
+                <h1 className="font-bold text-2xl lg:text-5xl text-white">
+                    Discover, Learn, Flourish
                     </h1>
                     <p className="my-4 text-white">
-                    we provide all type of tourism facilities at a reasonable price.
+                    Our motto reflects our commitment to facilitating discovery, fostering learning, and nurturing personal growth.
                     </p>
-                    <Link to={user?"/all-spots":"/sign-up"} className="btn bg-basic text-yellow-400 hover:text-basic rounded-none border-none">book now</Link>
+                    <Link to={user?"/all-books":"/sign-up"} className="btn bg-basic text-yellow-400 hover:text-basic rounded-none border-none">Start Borrowing</Link>
                 </div>
                 <div className="right-video basis-1/2 lg:flex hidden items-center justify-center">
-                    <img
-                    className="slideImg"
-                    src="https://i.ibb.co/qCzbS3d/27997026-tour-set-13-removebg-preview.png"
-                    alt=""
-                    />
+                    <div style={{backgroundImage:'url(https://i.ibb.co/SQFNGGc/original-e0893b0cb5499b195baaf18ab595e940.gif)',backgroundSize:'cover',backgroundPosition:'center center'}} className="w-[350px] h-[350px] rounded">
+                        {/* <img src="https://i.ibb.co/SQFNGGc/original-e0893b0cb5499b195baaf18ab595e940.gif" alt="" className="w-full mx-auto rounded" /> */}
+                    </div>
                 </div>
                 </div>
             </div>
@@ -91,38 +81,16 @@ const Home = () => {
             <div className="min-h-screen flex">
                 <div className="slider-container container mx-auto lg:flex items-center justify-center text-left capitalize p-12 lg:pl-24">
                 <div className="left-text text-center">
-                    <h1 className="font-bold text-2xl lg:text-5xl text-white">
-                    we provides comfort and luxary according to your preference.
+                    <h1 className="font-bold text-2xl lg:text-5xl text-white">easy to find,easy to borrow.
                     </h1>
-                    <p className="my-4 text-white">Promoting responsible tourism practices to preserve destinations for future generations.
+                    <p className="my-4 text-white">With a rich collection of books spanning various genres and subjects, along with dynamic programs and events, books den serves as a catalyst for intellectual curiosity and lifelong learning.
                     </p>
-                    <Link to={user?"/all-spots":"/sign-up"} className="btn bg-yellow-400 rounded-none border-none">start customize</Link>
+                    <Link to={user?"/all-books":"/sign-up"} className="btn  rounded-none border-none">explore now.</Link>
                 </div>
                 </div>
             </div>
             </SwiperSlide>
         </Swiper>
-      </div>
-      <div className="lg:h-0 relative py-4">
-        <div className="statSection lg:h-96 flex items-center justify-center ">
-            <div className="stats lg:stats-horizontal stats-vertical lg:absolute z-50 lg:top-[-50px] shadow rounded-none text-white bg-basic" data-aos="fade-up">
-            <div className="stat capitalize ">
-                <div className="stat-title text-white">Blog published</div>
-                <div className="stat-value">560</div>
-            </div>
-
-            <div className="stat">
-                <div className="stat-title text-white">Total visitors</div>
-                <div className="stat-value">45,000 +</div>
-                <div className="stat-desc text-white">↗︎ 400 (22%)</div>
-            </div>
-
-            <div className="stat ">
-                <div className="stat-title text-white">Happy Client</div>
-                <div className="stat-value">1500+</div>
-            </div>
-            </div>
-        </div>
       </div>
       <div className="card-section lg:py-64 container mx-auto">
         <div className="lg:flex gap-8 p-4">
