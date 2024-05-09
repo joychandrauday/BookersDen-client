@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Link, useLoaderData } from "react-router-dom";
 // import Swiper styles
@@ -7,23 +7,14 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { FaCirclePlay } from "react-icons/fa6";
-import { Fade } from "react-awesome-reveal";
-import { Tooltip } from 'react-tooltip'
 // import required modules
 import { Autoplay, Navigation } from "swiper/modules"; 
-import SingleDEstinationCard from "../../Components/SingleDEstinationCard/SingleDEstinationCard";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../Provider/Provider";
 
 const Home = () => {
-    const[user,setUser]=useState(true)
-    const[countries,setCountries]=useState([])
-    const destinations=useLoaderData()
-    useEffect(()=>{
-        fetch('https://travelpulseserver.vercel.app/countries')
-        .then(res=>res.json())
-        .then(data=>setCountries(data));
-    },[])
-    console.log(countries)
+    const {user} =useContext(AuthContext)
+    console.log(user)
   return (
     <div className="">
         <Helmet>
@@ -136,7 +127,7 @@ const Home = () => {
       <div className="card-section lg:py-64 container mx-auto">
         <div className="lg:flex gap-8 p-4">
             <div className="basis-1/2">
-                <Fade cascade damping={0.1}>
+                <div>
                     
                     <h1 className="lg:text-6xl text-3xl font-bold font-dancing">Explore All Corners of The World With Us</h1>
                     <div className="py-5">
@@ -144,70 +135,27 @@ const Home = () => {
                         <p className="pt-4">A small river named Duden flows by their place and supplies it with the necessary regelialia. It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
                     </div>
                     <button className="btn text-white font-dancing px-12 text-xl  bg-basic rounded-full hover:text-basic capitalize">read more</button>
-                </Fade>
+                </div>
             </div>
             <div className="basis-1/2 relative">
                 <div className="image-wrapper flex justify-center">
-                    <Fade>
+                    <div>
 
                         <div className="image-1lg:w-64 w-44 lg:h-96 border-4 lg:absolute right-12 bottom-8">
                             <img src="https://i.ibb.co/fHFGd3N/eberhard-grossgasteiger-j-CL98-LGaeo-E-unsplash.jpg" alt="" className="h-[-webkit-fill-available]"/>
                         </div>
-                    </Fade>
-                    <Fade>
+                    </div>
+                    <div>
                         <div className="image-1 image-1 w-44 lg:w-64 lg:h-96 border-4 lg:absolute left-12 top-8">
                             <img src="https://i.ibb.co/QKt4GMn/daniel-roe-lpjb-UMOyx8-unsplash.jpg" alt="" className="h-[-webkit-fill-available]"/>
                         </div>
 
-                    </Fade>
+                    </div>
                 </div>
             </div>
         </div>
       </div>
-      <div className="tourists-spot py-12">
-        <div className="container mx-auto p-4">
-            <h1 className="capitalize font-bold text-3xl">tourist spots</h1>
-            <div className="lg:grid md:grid lg:grid-cols-3 md:grid-cols-2 gap-4">
-                {
-                    destinations.slice(0,6).map(destination=><SingleDEstinationCard key={destination._id} destination={destination}></SingleDEstinationCard>)
-                }
-            </div>
-           <div className="text-center mt-5">
-             <Link to={'/all-spots'} className="btn px-12 rounded-none hover:text-basic bg-basic text-white capitalize">view all spots</Link>
-           </div>
-        </div>
-      </div>
-      <div className="country-section ">
-        <div className="">
-            <div className="lg:grid grid-cols-3">
-                {
-                    countries.map(country=><div 
-                        style={{
-                            backgroundImage:`url(${country.image})`,
-                            height:'300px',
-                            backgroundSize:'cover',
-                            backgroundPosition:'center center',
-                            cursor:'pointer',
-                            display:'flex',
-                            alignItems:'center',
-                            justifyContent:'center'
-                            
-                        }}
-                       
-                        className="countryCard"
-                        key={country._id}>
-                            <Link to={`/countries/${country.country_Name}`} className="countryElement h-[300px] w-full flex items-start justify-center hover:backdrop-blur-md flex-col p-5 text-left gap-4 text-white lg:hidden "  data-tooltip-id="my-tooltip"
-                        data-tooltip-content="Click to see the spot list of this country.">
-                                
-                                <h1 className="capitalize font-bold  text-2xl">{country.country_Name}</h1>
-                                <p>{country.short_description}</p>
-                            </Link>
-                            <Tooltip id="my-tooltip" />
-                    </div>)
-                }
-            </div>
-        </div>
-      </div>
+      
     </div>
   );
 };
