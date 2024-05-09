@@ -6,9 +6,13 @@ import Footer from '../../Components/Footer/Footer';
 const Root = () => {
     return (
         <div>
-            <Header></Header>
+            <div className="absolute w-full z-[99999] ">
+                <Header></Header>
+            </div>
             <Outlet></Outlet>
-            <Footer></Footer>
+            <div className="py-16">
+                <Footer></Footer>
+            </div>
         </div>
     );
 };

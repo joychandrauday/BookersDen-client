@@ -11,6 +11,7 @@ import SignIn from '../Pages/Sign In/SignIn';
 import SignUp from '../Pages/SignUp/SignUp';
 import AddBook from '../Pages/AddBook/AddBook';
 import PrivateRoute from './../Private Route/PrivateRoute';
+import AllBooks from '../Pages/AllBooks/AllBooks';
 
 const router = createBrowserRouter([
     {
@@ -20,8 +21,7 @@ const router = createBrowserRouter([
       children: [
         {
           path: "/",
-          element: <Home></Home>,
-          loader:()=>fetch('https://travelpulseserver.vercel.app/destinations'),
+          element: <Home></Home>
         },
         {
           path: "/sign-in",
@@ -32,9 +32,16 @@ const router = createBrowserRouter([
           element: <SignUp></SignUp>,
         },
         {
-          path: "/destination/update/:id",
+          path: "/all-books",
+          element:<PrivateRoute><AllBooks></AllBooks></PrivateRoute> ,
+        },
+        {
+          path: "/add-book",
           element:<PrivateRoute><AddBook></AddBook></PrivateRoute> ,
-          loader:({params})=>fetch(`https://travelpulseserver.vercel.app/destination/${params.id}`)
+        },
+        {
+          path: "/borrowed-book",
+          element:<PrivateRoute><AddBook></AddBook></PrivateRoute> ,
         },
       ],
     },

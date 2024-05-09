@@ -18,7 +18,7 @@ const Home = () => {
   return (
     <div className="">
         <Helmet>
-            <title>Travel pulse- your travel partner.</title>
+            <title>Bookers Den: Discover, Learn, Flourish</title>
         </Helmet>
       <div className="home-slider">
         <Swiper

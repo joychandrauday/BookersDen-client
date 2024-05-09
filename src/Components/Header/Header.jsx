@@ -24,35 +24,27 @@ const Header = () => {
   }, [theme]);
 
   const { user, logOut } = useContext(AuthContext);
+  const navLinksPrivate = (
+    <>
+      <li>
+        <NavLink to={"/add-book"}>Add Book</NavLink>
+      </li>
+    </>
+  );
   const navLinks = (
     <>
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
       <li>
-        <NavLink to={"/all-spots"}>Tourists Spot</NavLink>
+        <NavLink to={"/all-books"}>All Books</NavLink>
       </li>
-      {user ? (
-        <div className="lg:flex">
-          <li>
-            <NavLink to={"/add-spot"}>Add A Tourist Spot</NavLink>
-          </li>
-          <li>
-            <NavLink to={`/my-list/${user.email}`}>My List</NavLink>
-          </li>
-        </div>
-      ) : (
-        ""
-      )}
-
-      <li>
-        <NavLink to={"/contact"}>Contact</NavLink>
-      </li>
+      {user ? <div className="lg:flex">{navLinksPrivate}</div> : ""}
     </>
   );
   return (
-    <div>
-      <div className="navbar bg-base-100 container mx-auto py-4">
+    <div className="backdrop-blur-xl fixed w-full text-white">
+      <div className="navbar container mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -79,13 +71,13 @@ const Header = () => {
             </ul>
           </div>
           <NavLink to={"/"} className="logo relative text-xl flex items-center">
-            <h1 className="z-50 capitalize font-bold lg:text-[#00008b] lg:text-2xl">
-              travel pulse.
+            <h1 className="z-50 bg-black bg-opacity-30 capitalize font-bold lg:text-white lg:text-2xl">
+              bookers den.
             </h1>
             <img
-              src="https://i.ibb.co/3W6JKtz/gnment.gif"
+              src="https://i.ibb.co/x2bS9Fs/Animation-1715270691756.gif"
               alt=""
-              className="absolute z-10 lg:left-20"
+              className="absolute z-10 lg:left-0"
             />
           </NavLink>
         </div>
@@ -116,43 +108,57 @@ const Header = () => {
             </svg>
           </label>
           {user ? (
-            <div className="dropdown dropdown-end flex items-center">
-              
-              <div
-                id="clickable"
-                data-tooltip-place="left-start"
-                tabIndex={30}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
+            <div className="dropdown dropdown-hover dropdown-end relative">
+              <div tabIndex={0} role="button" className="m-1">
+                <div className="w-12 relative">
                   <img
                     alt="Tailwind CSS Navbar component"
                     src={user.photoURL}
                   />
+                  <div className="badge badge-warning absolute top-0 rotate-12 skew-x-3 skew-y-3 capitalize font-bold left-5">librarian</div>
                 </div>
               </div>
-              <div className="z-[99999999] hidden lg:block bg-white">
-                <h1 className="text-white hidden lg:block text-xl font-extrabold">
-                  {user.displayName}
-                </h1>
-                <button className="btn capitalize rounded-none" onClick={() => logOut(auth)}>click me to logout!</button>
-              </div>
               <ul
-                tabIndex={999}
-                className="menu menu-sm lg:hidden dropdown-content lg:mt-40 z-[999] p-2 shadow bg-base-100 rounded-box w-52"
+                tabIndex={99999}
+                className="dropdown-content z-[99999] menu p-2 shadow bg-base-100 absolute w-32 rounded-none"
               >
                 <li>
-                  <h1 className="text-basic block lg:hidden font-extrabold">
-                    {user.displayName}
-                  </h1>
-                </li>
-                <li>
-                  <a onClick={() => logOut(auth)}>Logout</a>
+                  <a onClick={() => logOut(auth)}>Log Out</a>
                 </li>
               </ul>
             </div>
           ) : (
+            // <div className="dropdown dropdown-end flex items-center">
+
+            //   <div
+            //     id="clickable"
+            //     data-tooltip-place="left-start"
+            //     tabIndex={30}
+            //     role="button"
+            //     className="btn btn-ghost btn-circle avatar"
+            //   >
+
+            //   </div>
+            //   <div className="z-[99999999] hidden lg:block bg-white">
+            //     <h1 className="text-white hidden lg:block text-xl font-extrabold">
+            //       {user.displayName}
+            //     </h1>
+            //     <button className="btn capitalize rounded-none" onClick={() => logOut(auth)}>click me to logout!</button>
+            //   </div>
+            //   <ul
+            //     tabIndex={999}
+            //     className="menu menu-sm lg:hidden dropdown-content lg:mt-40 z-[999] p-2 shadow bg-base-100 rounded-box w-52"
+            //   >
+            //     <li>
+            //       <h1 className="text-basic block lg:hidden font-extrabold">
+            //         {user.displayName}
+            //       </h1>
+            //     </li>
+            //     <li>
+            //       <a onClick={() => logOut(auth)}>Logout</a>
+            //     </li>
+            //   </ul>
+            // </div>
             <div className="lg:relative absolute lg:right-0 right-16">
               <Link
                 to={"/sign-up"}
