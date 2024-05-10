@@ -19,7 +19,7 @@ const BorrowedBooks = () => {
             <h1 className="text-center font-bold text-3xl">Borrowed Books</h1>
             <div className="lg:grid grid-cols-3 gap-4 container mx-auto">
                 {
-                    borrowedBooks.map(book=><BorrowedBookCard key={book._id} book={book?.book}></BorrowedBookCard>)
+                    borrowedBooks.map(book=><BorrowedBookCard key={book._id} book={book}></BorrowedBookCard>)
                 }
             </div>
 

@@ -13,26 +13,27 @@ const BookDetailsPage = () => {
   const bookId = useParams();
   const [book, setBook] = useState([]);
   const { user } = useContext(AuthContext);
-  const { id } = useParams(); 
+  const { id } = useParams();
   const [bookNumbers, setBookNumbers] = useState(0); // Initialize bookNumbers state
-    const [borrowedTrue,setBorrowedTrue]=useState(false)
-    useEffect(() => {
-      axios.get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
-        .then((response) => {
-          const borrowedBooks = response.data;
-          console.log(borrowedBooks);
-          const isIdPresent = borrowedBooks.some((book) => book?.bookId === id);
-          setBorrowedTrue(isIdPresent);
-          console.log(isIdPresent)
-        })
-        .catch((error) => {
-          console.error("Error fetching borrowed books:", error);
-        });
-    }, [id, user?.email]);
+  const [borrowedTrue, setBorrowedTrue] = useState(false);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
+      .then((response) => {
+        const borrowedBooks = response.data;
+        console.log(borrowedBooks);
+        const isIdPresent = borrowedBooks.some((book) => book?.bookId === id);
+        setBorrowedTrue(isIdPresent);
+        console.log(isIdPresent);
+      })
+      .catch((error) => {
+        console.error("Error fetching borrowed books:", error);
+      });
+  }, [id, user?.email]);
   useEffect(() => {
     axios.get(`http://localhost:5000/book/${bookId.id}`).then((data) => {
       setBook(data.data);
-      setBookNumbers(data.data.book_numbers); // Set initial book numbers 
+      setBookNumbers(data.data.book_numbers); // Set initial book numbers
     });
   }, []);
 
@@ -45,7 +46,7 @@ const BookDetailsPage = () => {
     rating,
     author,
   } = book;
-  
+
   const handleBorrowBook = (book, e) => {
     e.preventDefault(); // Prevent form submission
 
@@ -53,8 +54,15 @@ const BookDetailsPage = () => {
     const userEmail = form.userEmail.value;
     const userName = form.userName.value;
     const returnDate = form.date.value;
+    const borrowedDate = new Date().toISOString();
     const bookId = book._id;
-    const borrowedDetails = { userEmail, userName, returnDate, book };
+    const borrowedDetails = {
+      userEmail,
+      userName,
+      borrowedDate,
+      returnDate,
+      book,
+    };
 
     axios
       .post("http://localhost:5000/borrowed-books", borrowedDetails)
@@ -71,21 +79,22 @@ const BookDetailsPage = () => {
               // Update the state with the new book numbers
               setBookNumbers(bookNumbers - 1);
             })
-            .catch((error) => console.error("Error updating book numbers:", error));
-          
+            .catch((error) =>
+              console.error("Error updating book numbers:", error)
+            );
+
           Swal.fire({
             position: "center",
             icon: "success",
             title: "Your Book has been borrowed.",
             showConfirmButton: true,
-          }).then(() => {
-        });
-        form.reset(); // Reset form fields
-        const modal = document.getElementById("my_modal_3");
-        setBorrowedTrue(true)
-        if (modal) {
-          modal.close(); // Close the modal
-        }
+          }).then(() => {});
+          form.reset(); // Reset form fields
+          const modal = document.getElementById("my_modal_3");
+          setBorrowedTrue(true);
+          if (modal) {
+            modal.close(); // Close the modal
+          }
         } else {
           Swal.fire({
             position: "center",
@@ -122,42 +131,53 @@ const BookDetailsPage = () => {
           >
             Borrow Book
           </AwesomeButton>
-          {borrowedTrue? <h2 className="capitalize badge">you have already borrowed the book.</h2>:''}
+          {borrowedTrue ? (
+            <h2 className="capitalize badge">
+              you have already borrowed the book.
+            </h2>
+          ) : (
+            ""
+          )}
           {/* modal */}
           <dialog id="my_modal_3" className="modal">
             <div className="modal-box">
-              {
-                bookNumbers>0? <form
-                onSubmit={(e) => handleBorrowBook(book, e)}
-                method="dialog"
-                className="flex flex-col text-left"
-              >
-                <input
-                  type="email"
-                  name="userEmail"
-                  defaultValue={user?.email}
-                  className="input input-bordered mb-4"
-                  readOnly
-                />
-                <input
-                  type="text"
-                  name="userName"
-                  defaultValue={user?.displayName}
-                  className="input input-bordered mb-4"
-                  readOnly
-                />
-                <label className="mb-2">Return Date</label>
-                <input
-                  type="date"
-                  name="date"
-                  className="input input-bordered mb-4"
-                  required
-                />
-                <AwesomeButton type="primary" className="w-full">
-                  Borrow this Book
-                </AwesomeButton>
-              </form> : <h2 className="capitalize">the book is out of stock. <div className="badge">press esc to close.</div> </h2>
-              }
+              {bookNumbers > 0 ? (
+                <form
+                  onSubmit={(e) => handleBorrowBook(book, e)}
+                  method="dialog"
+                  className="flex flex-col text-left"
+                >
+                  <input
+                    type="email"
+                    name="userEmail"
+                    defaultValue={user?.email}
+                    className="input input-bordered mb-4"
+                    readOnly
+                  />
+                  <input
+                    type="text"
+                    name="userName"
+                    defaultValue={user?.displayName}
+                    className="input input-bordered mb-4"
+                    readOnly
+                  />
+                  <label className="mb-2">Return Date</label>
+                  <input
+                    type="date"
+                    name="date"
+                    className="input input-bordered mb-4"
+                    required
+                  />
+                  <AwesomeButton type="primary" className="w-full">
+                    Borrow this Book
+                  </AwesomeButton>
+                </form>
+              ) : (
+                <h2 className="capitalize">
+                  the book is out of stock.{" "}
+                  <div className="badge">press esc to close.</div>{" "}
+                </h2>
+              )}
             </div>
           </dialog>
           {/* modal */}
