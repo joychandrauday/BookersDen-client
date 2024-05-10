@@ -97,7 +97,7 @@ const BookDetailsPage = () => {
         <div className="text-center justify-center basis-1/3 px-16">
           <div className="flex justify-center ralative">
             <img src={image} alt="" className="w-72" />
-            <span className="badge badge-accent absolute left-16 -rotate-45">
+            <span className="badge badge-warning absolute left-16 -rotate-45">
               copies left {bookNumbers}
             </span>
           </div>
