@@ -1,28 +1,10 @@
-import React from "react";
-import { Rating } from "@smastrom/react-rating";
+import React from 'react';
 
-import "@smastrom/react-rating/style.css";
-import { AwesomeButton } from "react-awesome-button";
-import "react-awesome-button/dist/styles.css";
-import { Link } from "react-router-dom";
-
-const SingleBookCard = ({ book }) => {
-  const {
-    _id,
-    image,
-    book_name,
-    genre,
-    book_numbers,
-    short_description,
-    author,
-    rating,
-    userEmail,
-    userName,
-  } = book;
-
-  return (
-    <div>
-      <div className="card bg-white relative rounded-none shadow-xl">
+const BorrowedBookCard = ({book}) => {
+    console.log(book)
+    return (
+        <div>
+            <div className="card bg-white relative rounded-none shadow-xl">
         <figure className="bg-white p-4">
           <img
             src={image}
@@ -49,8 +31,8 @@ const SingleBookCard = ({ book }) => {
           </div>
         </div>
       </div>
-    </div>
-  );
+        </div>
+    );
 };
 
-export default SingleBookCard;
+export default BorrowedBookCard;

@@ -3,13 +3,16 @@ import { FaGoogle } from "react-icons/fa6";
 import { FaGithub } from "react-icons/fa";
 
 import { AuthContext } from "../../Provider/Provider";
-import Swal from 'sweetalert2'
-import { useLocation, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import axios from "axios";
+import { AwesomeButton } from "react-awesome-button";
+
+import "react-awesome-button/dist/styles.css";
 
 const SignIn = () => {
-  const location=useLocation()
+  const location = useLocation();
   const {
     user,
     setUser,
@@ -22,7 +25,7 @@ const SignIn = () => {
     googleSignIn,
     githubSignIn,
   } = useContext(AuthContext);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const handleSignIn = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -33,17 +36,17 @@ const SignIn = () => {
         // Signed up
         const user = userCredential.user;
         if (user) {
-          const user={email};
-          
+          const user = { email };
+
           //access token
-          axios.post('http://localhost:5000/jwt',user,{withCredentials:true})
-          .then(res=>{
-            console.log(res.data)
-            if (res.data.success) {
-              navigate(location?.state ? location.state : "/");
-              
-            }
-          })
+          axios
+            .post("http://localhost:5000/jwt", user, { withCredentials: true })
+            .then((res) => {
+              console.log(res.data);
+              if (res.data.success) {
+                navigate(location?.state ? location.state : "/");
+              }
+            });
 
           Swal.fire({
             position: "center",
@@ -68,102 +71,114 @@ const SignIn = () => {
         // ..
       });
   };
-  const handleGoogleLogin=()=>{
+  const handleGoogleLogin = () => {
     googleSignIn()
-    .then((res) => {
-      navigate(location?.state ? location.state : "/");
-    })
-    .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong.",
+      .then((res) => {
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong.",
+        });
       });
-    });
-  }
-  const handleGitLogin=()=>{
+  };
+  const handleGitLogin = () => {
     githubSignIn()
-    .then((res) => {
-      navigate(location?.state ? location.state : "/");
-    })
-    .catch((error) => {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Something went wrong.",
+      .then((res) => {
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Something went wrong.",
+        });
       });
-    });
-  }
+  };
   return (
-    <div className="items-center">
+    <div className="items-center ">
       <Helmet>
         <title>Sign in to Continue.</title>
       </Helmet>
-      <div className="hero bg-basic-bg lg:min-h-screen">
-        {
-          user? <div className="p-4 backdrop-blur-sm glass"><h1 className="text-3xl font-extrabold uppercase 
-          ">You are already signed in,<span className="text-yellow-400">{user.displayName}</span></h1></div>
-          :<div className="hero-content flex-col lg:flex-row-reverse">
-          <div className="text-center lg:text-left basis-1/2 c card shrink-0 w-full shadow-2xl bg-base-100 p-8 py-12 ">
-            <h1 className="text-5xl font-bold">Login now!</h1>
-            <p className="py-6 capitalize">
-              to enjoy its blend of innovation, user-centric design, and a
-              commitment to sustainable travel practices, WanderEase aims to
-              redefine the way people explore the world, making every journey an
-              unforgettable experience.
-            </p>
-            <ul className="menu menu-horizontal rounded-box items-center lg:text-xl lg:gap-4">
-              <h1 className="capitalize font-bold">or, continue with: </h1>
-              <li>
-                <a className="tooltip text-2xl" data-tip="Google" onClick={handleGoogleLogin}>
-                  <FaGoogle />
-                </a>
-              </li>
-              <li>
-                <a className="tooltip text-2xl" data-tip="Github" onClick={handleGitLogin}>
-                  <FaGithub />
-                </a>
-              </li>
-            </ul>
+      <div className="hero bg-basic-bg lg:min-h-screen pt-32">
+        {user ? (
+          <div className="p-4 backdrop-blur-sm glass">
+            <h1
+              className="text-3xl font-extrabold uppercase 
+          "
+            >
+              You are already signed in,
+              <span className="text-yellow-400">{user.displayName}</span>
+            </h1>
           </div>
-          <div className="basis-1/2 card shrink-0 w-full shadow-2xl bg-base-100">
-            <form className="card-body" onSubmit={handleSignIn}>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Email</span>
-                </label>
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="email"
-                  className="input input-bordered"
-                  required
-                />
+        ) : (
+          <div className="hero-content w-2/5">
+            <div className="text-center lg:text-left w-full shadow-2xl bg-base-100 p-8 rounded">
+              <h1 className="text-2xl font-bold">Login now!</h1>
+              <form className="" onSubmit={handleSignIn}>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Email</span>
+                  </label>
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="email"
+                    className="input input-bordered"
+                    required
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text">Password</span>
+                  </label>
+                  <input
+                    type="password"
+                    name="password"
+                    placeholder="password"
+                    className="input input-bordered"
+                    required
+                  />
+                  <div className="flex justify-between items-center">
+                  <label className="label">
+                    <a href="#" className="label-text-alt link link-hover text-sm capitalize">
+                      Forgot password?
+                    </a>
+                  </label>
+                  <label className="label capitalize">
+                  dont have an account?
+                    <Link to={'/sign-up'} className="label-text-alt link link-hover text-sm capitalize font-bold">
+                      register
+                    </Link>
+                  </label>
+                  </div>
+                </div>
+                <div className="form-control">
+                  <button className="btn btn-primary">Login</button>
+                </div>
+              </form>
+              <div className="flex items-center justify-center pt-4 gap-3">
+                <h1 className="capitalize font-bold">or, continue with: </h1>
+                <AwesomeButton
+                  size="small"
+                  type="primary"
+                  onPress={handleGoogleLogin}
+                >
+                  Google
+                </AwesomeButton>
+                <AwesomeButton
+                  size="small"
+                  type="primary"
+                  onPress={handleGitLogin}
+                >
+                  Github
+                </AwesomeButton>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text">Password</span>
-                </label>
-                <input
-                  type="password"
-                  name="password"
-                  placeholder="password"
-                  className="input input-bordered"
-                  required
-                />
-                <label className="label">
-                  <a href="#" className="label-text-alt link link-hover">
-                    Forgot password?
-                  </a>
-                </label>
-              </div>
-              <div className="form-control mt-6">
-                <button className="btn btn-primary">Login</button>
-              </div>
-            </form>
+            </div>
           </div>
-        </div>
-        }
+        )}
       </div>
     </div>
   );

@@ -120,6 +120,14 @@ const SignUp = () => {
                   {...register('photoURL')}
               />
               </div>
+              <label className="label capitalize ">
+                  <p>
+                  already have an account? 
+                      <Link to={'/sign-in'} className="link  link-hover text-purple-950">
+                      log in
+                      </Link>
+              </p>
+              </label>
           </div>
           <div className="basis-1/2">
               <div className="form-control">
@@ -158,14 +166,6 @@ const SignUp = () => {
                   }
                   })}
               />
-              <label className="label capitalize ">
-                  <p>
-                  already have an account? 
-                      <Link to={'/sign-in'} className="link  link-hover text-purple-950">
-                      log in
-                      </Link>
-              </p>
-              </label>
               <span onClick={()=>setShowPassword(!showPassword)} className="absolute right-4 text-xl top-12 cursor-pointer"><FaEye /></span>
               
               <div>{errors.password && <p className="text-red-600 capitalize my-2">{errors.password.message}</p> }</div>

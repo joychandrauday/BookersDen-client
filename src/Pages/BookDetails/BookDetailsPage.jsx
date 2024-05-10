@@ -13,18 +13,26 @@ const BookDetailsPage = () => {
   const bookId = useParams();
   const [book, setBook] = useState([]);
   const { user } = useContext(AuthContext);
+  const { id } = useParams(); 
   const [bookNumbers, setBookNumbers] = useState(0); // Initialize bookNumbers state
     const [borrowedTrue,setBorrowedTrue]=useState(false)
-    useEffect(()=>{
-        axios(`http://localhost:5000/borrowed-books?email=${user?.email}`)
-        .then((data) => {
-            data.data.length>0?setBorrowedTrue(true):setBorrowedTrue(false)
-          });
-    },[])
+    useEffect(() => {
+      axios.get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
+        .then((response) => {
+          const borrowedBooks = response.data;
+          console.log(borrowedBooks);
+          const isIdPresent = borrowedBooks.some((book) => book?.bookId === id);
+          setBorrowedTrue(isIdPresent);
+          console.log(isIdPresent)
+        })
+        .catch((error) => {
+          console.error("Error fetching borrowed books:", error);
+        });
+    }, [id, user?.email]);
   useEffect(() => {
     axios.get(`http://localhost:5000/book/${bookId.id}`).then((data) => {
       setBook(data.data);
-      setBookNumbers(data.data.book_numbers); // Set initial book numbers
+      setBookNumbers(data.data.book_numbers); // Set initial book numbers 
     });
   }, []);
 
@@ -46,7 +54,7 @@ const BookDetailsPage = () => {
     const userName = form.userName.value;
     const returnDate = form.date.value;
     const bookId = book._id;
-    const borrowedDetails = { userEmail, userName, returnDate, bookId };
+    const borrowedDetails = { userEmail, userName, returnDate, book };
 
     axios
       .post("http://localhost:5000/borrowed-books", borrowedDetails)
@@ -74,6 +82,7 @@ const BookDetailsPage = () => {
         });
         form.reset(); // Reset form fields
         const modal = document.getElementById("my_modal_3");
+        setBorrowedTrue(true)
         if (modal) {
           modal.close(); // Close the modal
         }
@@ -97,7 +106,7 @@ const BookDetailsPage = () => {
         <div className="text-center justify-center basis-1/3 px-16">
           <div className="flex justify-center ralative">
             <img src={image} alt="" className="w-72" />
-            <span className="badge badge-warning absolute left-16 -rotate-45">
+            <span className="badge badge-accent absolute left-16 -rotate-45">
               copies left {bookNumbers}
             </span>
           </div>
