@@ -14,6 +14,7 @@ import PrivateRoute from './../Private Route/PrivateRoute';
 import AllBooks from '../Pages/AllBooks/AllBooks';
 import BorrowedBooks from '../Pages/BorrowedBooks/BorrowedBooks';
 import LibrarianReg from '../Pages/LibrarianRegister/LibrarianReg';
+import BookDetailsPage from '../Pages/BookDetails/BookDetailsPage'
 
 const router = createBrowserRouter([
     {
@@ -36,6 +37,10 @@ const router = createBrowserRouter([
         {
           path: "/librarian-registration",
           element: <LibrarianReg></LibrarianReg>,
+        },
+        {
+          path: "/book/:id",
+          element: <BookDetailsPage></BookDetailsPage>,
         },
         {
           path: "/all-books",

@@ -2,7 +2,8 @@ import Swal from "sweetalert2";
 import { AuthContext } from "./../../Provider/Provider";
 import { Helmet } from "react-helmet-async";
 import { useContext } from "react";
-import './style.css'
+import "./style.css";
+import axios from "axios";
 
 const AddBook = () => {
   const { user } = useContext(AuthContext);
@@ -16,22 +17,53 @@ const AddBook = () => {
     const book_numbers = form.book_numbers.value;
     const short_description = form.short_description.value;
     const author_name = form.author_name.value;
+    const author_image = form.author_image.value;
+    const author_details = form.author_details.value;
     const rating = form.rating.value;
     const userEmail = form.userEmail.value;
     const userName = form.userName.value;
 
-    const formData = {
+    const newAuthor = {
+        author_name,
+        author_image,
+        author_details,
+      };
+    const newBook = {
       image,
       book_name,
       genre,
       book_numbers,
       short_description,
-      author_name,
+      author: newAuthor,
       rating,
       userEmail,
       userName,
     };
-    console.log(formData)
+
+    axios
+      .post("http://localhost:5000/allbooks", newBook)
+      .then(function (response) {
+        console.log(response);
+        if (response.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "Your Book has been added.",
+            showConfirmButton: true,
+          });
+          form.reset();
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "something went wrong..",
+            showConfirmButton: true,
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
     // send data to server
     // fetch("https://travelpulseserver.vercel.app/destinations", {
     //   method: "POST",
@@ -133,6 +165,14 @@ const AddBook = () => {
               placeholder="Enter Short Description"
               required
             ></textarea>
+            <label className="mb-2">Book Rating:</label>
+            <input
+              type="number"
+              name="rating"
+              className="input input-bordered mb-4"
+              placeholder="Enter Book's rating."
+              required
+            />
             {/* <label className="mb-2">Average Cost:</label>
             <input
               type="number"
@@ -151,14 +191,23 @@ const AddBook = () => {
               placeholder="Author name"
               required
             />
-            <label className="mb-2">Book Rating:</label>
+            <label className="mb-2">Author image:</label>
             <input
-              type="number"
-              name="rating"
+              type="text"
+              name="author_image"
               className="input input-bordered mb-4"
-              placeholder="Enter Book's rating."
+              placeholder="Author name"
               required
             />
+            <label className="mb-2">Author details:</label>
+            <input
+              type="text"
+              name="author_details"
+              className="input input-bordered mb-4"
+              placeholder="Author name"
+              required
+            />
+            
             {/* <label className="mb-2">Total Visitors Per Year:</label>
             <input
               type="number"
