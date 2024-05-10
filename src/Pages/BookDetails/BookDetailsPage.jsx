@@ -14,7 +14,8 @@ const BookDetailsPage = () => {
   const [book, setBook] = useState([]);
   const { user } = useContext(AuthContext);
   const { id } = useParams();
-  const [bookNumbers, setBookNumbers] = useState(0); // Initialize bookNumbers state
+  const [bookNumbers, setBookNumbers] = useState(0);
+  
   const [borrowedTrue, setBorrowedTrue] = useState(false);
   useEffect(() => {
     axios

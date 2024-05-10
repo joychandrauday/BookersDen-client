@@ -33,6 +33,9 @@ const SingleBookCard = ({ book }) => {
         <div className="badge badge-warning font-semibold rounded-none absolute capitalize">
           {genre}
         </div>
+        <div className="badge badge-accent font-semibold rounded-none absolute top-6 capitalize">
+          {book_numbers} books left.
+        </div>
         <div className="card-body">
           <h2 className="card-title text-black">{book_name}</h2>
           <p>
@@ -43,8 +46,8 @@ const SingleBookCard = ({ book }) => {
             <AwesomeButton className="w-full" type="primary">
               <Link to={`/book/${_id}`}>View details</Link>
             </AwesomeButton>
-            <AwesomeButton className="w-full" size="small" type="primary">
-            <Link to={`/book/${_id}`}>Edit</Link>
+            <AwesomeButton className="w-full" type="primary">
+            <Link to={`/book/${_id}`}>Update Book</Link>
             </AwesomeButton>
           </div>
         </div>
