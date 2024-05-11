@@ -47,7 +47,7 @@ const SingleBookCard = ({ book }) => {
               <Link to={`/book/${_id}`}>View details</Link>
             </AwesomeButton>
             <AwesomeButton className="w-full" type="primary">
-            <Link to={`/book/${_id}`}>Update Book</Link>
+            <Link to={`/book/update/${_id}`}>Update Book</Link>
             </AwesomeButton>
           </div>
         </div>

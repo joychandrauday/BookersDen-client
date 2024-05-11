@@ -15,6 +15,7 @@ import AllBooks from '../Pages/AllBooks/AllBooks';
 import BorrowedBooks from '../Pages/BorrowedBooks/BorrowedBooks';
 import LibrarianReg from '../Pages/LibrarianRegister/LibrarianReg';
 import BookDetailsPage from '../Pages/BookDetails/BookDetailsPage'
+import UpdateBook from '../Pages/UpdateBook/UpdateBook';
 
 const router = createBrowserRouter([
     {
@@ -41,6 +42,11 @@ const router = createBrowserRouter([
         {
           path: "/book/:id",
           element: <PrivateRoute><BookDetailsPage></BookDetailsPage></PrivateRoute>,
+        },
+        {
+          path: "/book/update/:id",
+          element: <PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>,
+          loader:({params})=>fetch(`http://localhost:5000/book/${params.id}`)
         },
         {
           path: "/all-books",
