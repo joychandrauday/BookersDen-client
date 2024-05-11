@@ -24,10 +24,10 @@ const AddBook = () => {
     const userName = form.userName.value;
 
     const newAuthor = {
-        author_name,
-        author_image,
-        author_details,
-      };
+      author_name,
+      author_image,
+      author_details,
+    };
     const newBook = {
       image,
       book_name,
@@ -170,7 +170,9 @@ const AddBook = () => {
               type="number"
               name="rating"
               className="input input-bordered mb-4"
-              placeholder="Enter Book's rating."
+              placeholder="Enter Book's rating (1-5)"
+              min="1"
+              max="5"
               required
             />
             {/* <label className="mb-2">Average Cost:</label>
@@ -196,7 +198,7 @@ const AddBook = () => {
               type="text"
               name="author_image"
               className="input input-bordered mb-4"
-              placeholder="Author name"
+              placeholder="Author image Link"
               required
             />
             <label className="mb-2">Author details:</label>
@@ -204,10 +206,10 @@ const AddBook = () => {
               type="text"
               name="author_details"
               className="input input-bordered mb-4"
-              placeholder="Author name"
+              placeholder="Author Details"
               required
             />
-            
+
             {/* <label className="mb-2">Total Visitors Per Year:</label>
             <input
               type="number"

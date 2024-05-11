@@ -30,9 +30,9 @@ const SingleBookCard = ({ book }) => {
             className="w-44 shadow-md  shadow-black"
           />
         </figure>
-        <div className="badge badge-warning font-semibold rounded-none absolute capitalize">
+        <Link to={`/genre/${genre}`} className="badge badge-warning font-semibold rounded-none absolute capitalize">
           {genre}
-        </div>
+        </Link>
         <div className="badge badge-accent font-semibold rounded-none absolute top-6 capitalize">
           {book_numbers} books left.
         </div>

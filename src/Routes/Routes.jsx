@@ -16,6 +16,7 @@ import BorrowedBooks from '../Pages/BorrowedBooks/BorrowedBooks';
 import LibrarianReg from '../Pages/LibrarianRegister/LibrarianReg';
 import BookDetailsPage from '../Pages/BookDetails/BookDetailsPage'
 import UpdateBook from '../Pages/UpdateBook/UpdateBook';
+import GenreWiseBooks from '../Pages/GenreWise/GenreWiseBooks';
 
 const router = createBrowserRouter([
     {
@@ -59,6 +60,11 @@ const router = createBrowserRouter([
         {
           path: "/borrowed-books",
           element:<PrivateRoute><BorrowedBooks></BorrowedBooks></PrivateRoute> ,
+        },
+        {
+          path: "/genre/:name",
+          element:<GenreWiseBooks></GenreWiseBooks>,
+          loader:({params})=>fetch(`http://localhost:5000/genre/${params.name}`),
         },
       ],
     },
