@@ -15,28 +15,35 @@ const BookDetailsPage = () => {
   const { user } = useContext(AuthContext);
   const { id } = useParams();
   const [bookNumbers, setBookNumbers] = useState(0);
-  
+  const [borrowedBooks, setBorrowedBooks] = useState([]);
   const [borrowedTrue, setBorrowedTrue] = useState(false);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
       .then((response) => {
         const borrowedBooks = response.data;
-        console.log(borrowedBooks);
-        const isIdPresent = borrowedBooks.some((book) => book?.bookId === id);
+        const isIdPresent = borrowedBooks.some((book) => book?.book._id === id);
         setBorrowedTrue(isIdPresent);
-        console.log(isIdPresent);
+        setBorrowedBooks(borrowedBooks);
       })
       .catch((error) => {
         console.error("Error fetching borrowed books:", error);
       });
   }, [id, user?.email]);
+
   useEffect(() => {
     axios.get(`http://localhost:5000/book/${bookId.id}`).then((data) => {
       setBook(data.data);
-      setBookNumbers(data.data.book_numbers); // Set initial book numbers
+      setBookNumbers(data.data.book_numbers);
     });
   }, []);
+
+  // Initialize borrowedTrue state based on the initial value of borrowedBooks
+  // useEffect(() => {
+  //   const isIdPresent = borrowedBooks.some((book) => book?.bookId === id);
+  //   setBorrowedTrue(isIdPresent);
+  //   console.log(isIdPresent);
+  // }, [borrowedBooks, id]);
 
   const {
     image,
@@ -127,7 +134,7 @@ const BookDetailsPage = () => {
           <AwesomeButton
             type="primary"
             className="w-full"
-            disabled={borrowedTrue}
+            disabled={borrowedTrue || borrowedBooks.length >= 3 || bookNumbers < 1}
             onPress={() => document.getElementById("my_modal_3").showModal()}
           >
             Borrow Book
@@ -135,6 +142,20 @@ const BookDetailsPage = () => {
           {borrowedTrue ? (
             <h2 className="capitalize badge">
               you have already borrowed the book.
+            </h2>
+          ) : (
+            ""
+          )}
+          {borrowedBooks.length >= 3 ? (
+            <h2 className="capitalize badge">
+              you have already borrowed three books.
+            </h2>
+          ) : (
+            ""
+          )}
+          {bookNumbers < 1 ? (
+            <h2 className="capitalize badge">
+              the book is out of stock.
             </h2>
           ) : (
             ""
