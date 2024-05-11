@@ -26,11 +26,11 @@ const AllBooks = () => {
     return (
         <div className='pt-32'>
             <h1 className="text-3xl text-center capitalize font-bold">all books</h1>
-            <div className="flex justify-center my-4">
+            <div className="flex justify-center gap-4 my-4 mb-12">
                 <AwesomeButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleShowAvailableBooks}>
                     {showAvailableBooks ? "Show All Books" : "Show Available Books"}
                 </AwesomeButton>
-                <div className="ml-4">
+                <div className="">
                     
                     <select
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-none"

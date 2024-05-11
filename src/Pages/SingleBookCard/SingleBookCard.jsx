@@ -22,8 +22,8 @@ const SingleBookCard = ({ book }) => {
 
   return (
     <div>
-      <div className="card bg-white relative rounded-none shadow-xl">
-        <figure className="bg-white p-4">
+      <div className="card border cursor-pointer bg-white relative rounded-none shadow-xl">
+        <figure className="bg-white hover:bg-gray-100 p-4">
           <img
             src={image}
             alt="book image"

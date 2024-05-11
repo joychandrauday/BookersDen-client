@@ -74,7 +74,7 @@ const Header = () => {
             </ul>
           </div>
           <NavLink to={"/"} className="logo relative text-xl flex items-center">
-            <h1 className="z-50 capitalize font-bold lg:text-white lg:text-2xl">
+            <h1 className="z-50 capitalize font-bold  lg:text-2xl">
               bookers den.
             </h1>
             <img
