@@ -41,16 +41,17 @@ const AllBooks = () => {
                     </select>
                 </div>
             </div>
-            <div className="lg:grid grid-cols-3 gap-4 container mx-auto">
+            <div className={viewMode==='card'? "lg:grid grid-cols-3 gap-4 container mx-auto":'container mx-auto'}>
                 {
                     viewMode === 'card' ?
                         allBooks
                             .filter(book => !showAvailableBooks || book.book_numbers > 0) // Filter available books if showAvailableBooks is true
                             .map(book => <SingleBookCard key={book._id} book={book}></SingleBookCard>)
                         :
-                        <table className="table-auto">
+                        <table className="table table-zebra w-full text-xl text-center">
                             <thead>
-                                <tr>
+                                <tr className='text-xl'>
+                                    <th>Index</th>
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>Genre</th>
@@ -60,8 +61,9 @@ const AllBooks = () => {
                             <tbody>
                                 {allBooks
                                     .filter(book => !showAvailableBooks || book.book_numbers > 0) // Filter available books if showAvailableBooks is true
-                                    .map(book => (
+                                    .map((book,index) => (
                                         <tr key={book._id}>
+                                            <th>{index + 1}</th>
                                             <td>{book.book_name}</td>
                                             <td>{book.author?.author_name}</td>
                                             <td>{book.genre}</td>
