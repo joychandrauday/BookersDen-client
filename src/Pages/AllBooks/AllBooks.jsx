@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import SingleBookCard from '../SingleBookCard/SingleBookCard';
+import { AwesomeButton } from 'react-awesome-button';
 
 const AllBooks = () => {
     const [allBooks, setAllBooks] = useState([]);
@@ -26,13 +27,13 @@ const AllBooks = () => {
         <div className='pt-32'>
             <h1 className="text-3xl text-center capitalize font-bold">all books</h1>
             <div className="flex justify-center my-4">
-                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleShowAvailableBooks}>
+                <AwesomeButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleShowAvailableBooks}>
                     {showAvailableBooks ? "Show All Books" : "Show Available Books"}
-                </button>
+                </AwesomeButton>
                 <div className="ml-4">
-                    <span className="mr-2">View Mode:</span>
+                    
                     <select
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-none"
                         value={viewMode}
                         onChange={(e) => handleChangeViewMode(e.target.value)}
                     >
@@ -48,14 +49,14 @@ const AllBooks = () => {
                             .filter(book => !showAvailableBooks || book.book_numbers > 0) // Filter available books if showAvailableBooks is true
                             .map(book => <SingleBookCard key={book._id} book={book}></SingleBookCard>)
                         :
-                        <table className="table table-zebra w-full text-xl text-center">
+                        <table className="table table-zebra w-full text-xl text-left">
                             <thead>
                                 <tr className='text-xl'>
-                                    <th>Index</th>
+                                    <th className='text-center'>Index</th>
                                     <th>Title</th>
                                     <th>Author</th>
                                     <th>Genre</th>
-                                    <th>Book Numbers</th>
+                                    <th className='text-center'>Available Books</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -63,11 +64,11 @@ const AllBooks = () => {
                                     .filter(book => !showAvailableBooks || book.book_numbers > 0) // Filter available books if showAvailableBooks is true
                                     .map((book,index) => (
                                         <tr key={book._id}>
-                                            <th>{index + 1}</th>
-                                            <td>{book.book_name}</td>
+                                            <th className='text-center'>{index + 1}</th>
+                                            <td className='w-96'>{book.book_name}</td>
                                             <td>{book.author?.author_name}</td>
-                                            <td>{book.genre}</td>
-                                            <td>{book.book_numbers}</td>
+                                            <td >{book.genre}</td>
+                                            <td className='text-center'>{book.book_numbers}</td>
                                         </tr>
                                     ))}
                             </tbody>

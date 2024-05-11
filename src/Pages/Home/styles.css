@@ -43,8 +43,17 @@
     width: 100%;
   }
 
-  .countryCard:hover .countryElement{
-    display: flex;
+  .countryElement .genreName {
+    opacity: 0; /* Initially hide the element */
+    transition: opacity 0.3s ease; /* Add transition for opacity property */
+  }
+  
+  .countryElement:hover .genreName {
+    opacity: 1; /* Show the element on hover */
+  }
+  
+  .countryElement:hover {
+    backdrop-filter: brightness(0.4) !important; 
   }
   @media (max-width: 576px) { 
     .slideheight{
@@ -58,9 +67,7 @@
     
   }
   @media (min-width: 768px) {
-    .countryElement{
-      backdrop-filter: brightness(.5);
-    }
+    
     .slideheight{
       height: 50vh  ;
       display: flex !important;
