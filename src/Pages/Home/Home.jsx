@@ -44,11 +44,11 @@ const Home = () => {
         <Swiper
           spaceBetween={30}
           centeredSlides={true}
-          autoplay={{
-            delay: 5500,
-            disableOnInteraction: true,
-            pauseOnMouseEnter: true,
-          }}
+          // autoplay={{
+          //   delay: 5500,
+          //   disableOnInteraction: true,
+          //   pauseOnMouseEnter: true,
+          // }}
           pagination={{
             clickable: true,
           }}
@@ -58,18 +58,18 @@ const Home = () => {
         >
           <SwiperSlide className="slideheight slide1">
             <div>
-              <div className="slider-container container mx-auto lg:flex items-center justify-center text-left capitalize p-12 lg:pl-24">
+              <div className="slider-container container mx-auto lg:flex items-center justify-center text-left capitalize lg:p-12 lg:pl-24">
                 <div className="left-text text-center">
                   <img
                     src="https://i.ibb.co/McLzr4x/2.gif"
                     alt=""
                     className="sslideInm w-96 mx-auto rounded-md shadow-lg mb-5"
                   />
-                  <h1 className="font-bold text-2xl  lg:text-5xl text-white">
+                  <h1 className="font-bold text-xl  lg:text-5xl text-white">
                     a vibrant center dedicated to the exploration of knowledge
                     through the pages of books.
                   </h1>
-                  <p className="my-4 text-white">
+                  <p className="my-4 text-white hidden lg:block">
                     Empower travelers with innovative tools and seamless
                     solutions to enhance their journey from start to finish.
                   </p>

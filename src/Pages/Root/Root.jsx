@@ -6,7 +6,7 @@ import Footer from '../../Components/Footer/Footer';
 const Root = () => {
     return (
         <div>
-            <div className="absolute w-full z-[99999] ">
+            <div className="lg:absolute w-full z-[99999] ">
                 <Header></Header>
             </div>
             <Outlet></Outlet>

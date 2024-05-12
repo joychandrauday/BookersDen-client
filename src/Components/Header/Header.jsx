@@ -23,35 +23,15 @@ const Header = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
-  const { user,librarian, logOut } = useContext(AuthContext);
-  //librarians
-  // const [librarian, setLibrarian] = useState(false);
-  // useEffect(() => {
-  //   // Function to fetch librarian data
-  //   const fetchLibrarianData = async () => {
-  //     try {
-  //       // Make request to server endpoint with user's email
-  //       const response = await axios.get(`http://localhost:5000/librarian/${user?.email}`);
-  //       // Check if librarian data exists
-  //       setLibrarian(!!response.data);
-  //     } catch (error) {
-  //       console.error('Error fetching librarian data:', error);
-  //     }
-  //   };
+  const { user, librarian, logOut } = useContext(AuthContext);
 
-  //   // Call the fetchLibrarianData function
-  //   fetchLibrarianData();
-  // }, [user?.email]);
-  //librarians
   const navLinksPrivate = (
     <>
-      {
-        librarian?
+      {librarian ? (
         <li>
           <NavLink to={"/add-book"}>Add Book</NavLink>
         </li>
-        :''
-      }
+      ) : null}
       <li>
         <NavLink to={"/all-books"}>All Books</NavLink>
       </li>
@@ -60,16 +40,18 @@ const Header = () => {
       </li>
     </>
   );
+
   const navLinks = (
     <>
       <li>
         <NavLink to={"/"}>Home</NavLink>
       </li>
-      {user ? <div className="lg:flex">{navLinksPrivate}</div> : ""}
+      {user ? <div className="lg:flex">{navLinksPrivate}</div> : null}
     </>
   );
+
   return (
-    <div className="backdrop-blur-xl fixed w-full ">
+    <div className="backdrop-blur-xl lg:fixed w-full z-[9999]">
       <div className="navbar container mx-auto py-4">
         <div className="navbar-start">
           <div className="dropdown">
@@ -81,25 +63,18 @@ const Header = () => {
                 viewBox="0 0 24 24"
                 stroke="currentColor"
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h8m-8 6h16" />
               </svg>
             </div>
             <ul
               tabIndex={0}
-              className="menu menu-sm dropdown-content mt-4 z-[99999999] p-2 shadow bg-base-100 rounded-box w-44"
+              className="menu menu-sm dropdown-content mt-4 p-2 shadow bg-base-100 rounded-box w-44 z-[99999]"
             >
               {navLinks}
             </ul>
           </div>
           <NavLink to={"/"} className="logo relative text-xl flex items-center">
-            <h1 className="z-50 capitalize font-bold  lg:text-2xl">
-              bookers den.
-            </h1>
+            <h1 className="z-50 capitalize font-bold  lg:text-2xl">bookers den.</h1>
             <img
               src="https://i.ibb.co/x2bS9Fs/Animation-1715270691756.gif"
               alt=""
@@ -112,47 +87,35 @@ const Header = () => {
         </div>
         <div className="navbar-end">
           <label className="swap swap-rotate pr-8">
-            {/* this hidden checkbox controls the state */}
             <input type="checkbox" onChange={handleToggle} />
-
-            {/* sun icon */}
             <svg
               className="swap-on fill-current w-7 h-7"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
-              <path d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+              {/* Sun Icon */}
             </svg>
-
-            {/* moon icon */}
             <svg
               className="swap-off fill-current w-7 h-7"
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
             >
-              <path d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+              {/* Moon Icon */}
             </svg>
           </label>
           {user ? (
             <div className="dropdown dropdown-hover dropdown-end relative">
               <div tabIndex={0} role="button" className="m-1">
                 <div className="w-12 relative">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user.photoURL}
-                  />
-                  {librarian? (
+                  <img alt="User" src={user.photoURL} />
+                  {librarian ? (
                     <div className="badge badge-warning absolute top-0 rotate-12 skew-x-3 skew-y-3 capitalize font-bold left-5">
                       librarian
                     </div>
-                  ) : // Show nothing if the user is not a librarian
-                  null}
+                  ) : null}
                 </div>
               </div>
-              <ul
-                tabIndex={99999}
-                className="dropdown-content z-[99999] menu p-2 shadow bg-base-100 absolute w-32 rounded-none"
-              >
+              <ul className="dropdown-content z-[99999] menu p-2 shadow bg-base-100 absolute w-32 rounded-none">
                 <li>
                   <a onClick={() => logOut(auth)}>Log Out</a>
                 </li>

@@ -8,3 +8,10 @@
     margin:0 4px ;
     
 }
+.dropdown-content {
+    position: absolute; /* Position dropdown menu relative to its parent */
+    z-index: 99999; /* Ensure dropdown menu stays above other elements */
+    top: 100%; /* Position dropdown menu below its parent */
+    left: 0; /* Align dropdown menu with its parent */
+  }
+  

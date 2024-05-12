@@ -43,7 +43,7 @@ const AllBooks = () => {
   };
 
   return (
-    <div className="pt-32">
+    <div className="lg:pt-32 pt-4">
       <h1 className="text-3xl text-center capitalize font-bold">all books</h1>
       <div className="flex justify-center gap-4 my-4 mb-12">
         <button
@@ -66,7 +66,7 @@ const AllBooks = () => {
       <div
         className={
           viewMode === "card"
-            ? "lg:grid grid-cols-3 gap-4 container mx-auto"
+            ? "grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-4 gap-4 container mx-auto"
             : "container mx-auto"
         }
       >
