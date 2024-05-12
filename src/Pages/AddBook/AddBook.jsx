@@ -64,43 +64,6 @@ const AddBook = () => {
       .catch(function (error) {
         console.log(error);
       });
-    // send data to server
-    // fetch("https://travelpulseserver.vercel.app/destinations", {
-    //   method: "POST",
-    //   headers: {
-    //     "content-type": "application/json",
-    //   },
-    //   body: JSON.stringify(formData),
-    // })
-    //   .then((res) => res.json())
-    //   .then((data) => {
-    //     console.log(data);
-    //     if (data.insertedId) {
-    //       Swal.fire({
-    //         position: "center",
-    //         icon: "success",
-    //         title: "Your destination has been added.",
-    //         showConfirmButton: true,
-    //       });
-    //       form.reset();
-    //     } else {
-    //       Swal.fire({
-    //         position: "center",
-    //         icon: "error",
-    //         title: "something went wrong..",
-    //         showConfirmButton: true,
-    //       });
-    //     }
-    //   })
-    //   .catch((error) => {
-    //     console.error("Error:", error);
-    //     Swal.fire({
-    //       position: "center",
-    //       icon: "error",
-    //       title: "Something went wrong..",
-    //       showConfirmButton: true,
-    //     });
-    //   });
   };
 
   return (

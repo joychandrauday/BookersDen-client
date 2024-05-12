@@ -38,7 +38,7 @@ const router = createBrowserRouter([
         },
         {
           path: "/librarian-registration",
-          element: <LibrarianReg></LibrarianReg>,
+          element: <PrivateRoute><LibrarianReg></LibrarianReg></PrivateRoute>,
         },
         {
           path: "/book/:id",

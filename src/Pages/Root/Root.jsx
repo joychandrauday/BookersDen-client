@@ -10,7 +10,7 @@ const Root = () => {
                 <Header></Header>
             </div>
             <Outlet></Outlet>
-            <div className="py-16">
+            <div className="">
                 <Footer></Footer>
             </div>
         </div>

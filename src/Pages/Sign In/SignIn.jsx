@@ -33,20 +33,9 @@ const SignIn = () => {
     const password = form.password.value;
     signInUser(email, password)
       .then((userCredential) => {
-        // Signed up
         const user = userCredential.user;
         if (user) {
-          const user = { email };
-
-          //access token
-          axios
-            .post("http://localhost:5000/jwt", user, { withCredentials: true })
-            .then((res) => {
-              console.log(res.data);
-              if (res.data.success) {
-                navigate(location?.state ? location.state : "/");
-              }
-            });
+          navigate(location?.state ? location.state : "/");
 
           Swal.fire({
             position: "center",
@@ -74,7 +63,7 @@ const SignIn = () => {
   const handleGoogleLogin = () => {
     googleSignIn()
       .then((res) => {
-        navigate(location?.state ? location.state : "/");
+        navigate(location?.state ? location.state : "/home");
       })
       .catch((error) => {
         Swal.fire({

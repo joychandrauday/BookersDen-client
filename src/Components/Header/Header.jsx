@@ -4,6 +4,7 @@ import "./header.css";
 import { AuthContext } from "../../Provider/Provider";
 import { getAuth } from "firebase/auth";
 import app from "../../Firebase/firebase.config";
+import axios from "axios";
 
 const auth = getAuth(app);
 const Header = () => {
@@ -22,13 +23,35 @@ const Header = () => {
     const localTheme = localStorage.getItem("theme");
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
+  const { user,librarian, logOut } = useContext(AuthContext);
+  //librarians
+  // const [librarian, setLibrarian] = useState(false);
+  // useEffect(() => {
+  //   // Function to fetch librarian data
+  //   const fetchLibrarianData = async () => {
+  //     try {
+  //       // Make request to server endpoint with user's email
+  //       const response = await axios.get(`http://localhost:5000/librarian/${user?.email}`);
+  //       // Check if librarian data exists
+  //       setLibrarian(!!response.data);
+  //     } catch (error) {
+  //       console.error('Error fetching librarian data:', error);
+  //     }
+  //   };
 
-  const { user, logOut } = useContext(AuthContext);
+  //   // Call the fetchLibrarianData function
+  //   fetchLibrarianData();
+  // }, [user?.email]);
+  //librarians
   const navLinksPrivate = (
     <>
-      <li>
-        <NavLink to={"/add-book"}>Add Book</NavLink>
-      </li>
+      {
+        librarian?
+        <li>
+          <NavLink to={"/add-book"}>Add Book</NavLink>
+        </li>
+        :''
+      }
       <li>
         <NavLink to={"/all-books"}>All Books</NavLink>
       </li>
@@ -118,7 +141,12 @@ const Header = () => {
                     alt="Tailwind CSS Navbar component"
                     src={user.photoURL}
                   />
-                  <div className="badge badge-warning absolute top-0 rotate-12 skew-x-3 skew-y-3 capitalize font-bold left-5">librarian</div>
+                  {librarian? (
+                    <div className="badge badge-warning absolute top-0 rotate-12 skew-x-3 skew-y-3 capitalize font-bold left-5">
+                      librarian
+                    </div>
+                  ) : // Show nothing if the user is not a librarian
+                  null}
                 </div>
               </div>
               <ul
@@ -131,37 +159,6 @@ const Header = () => {
               </ul>
             </div>
           ) : (
-            // <div className="dropdown dropdown-end flex items-center">
-
-            //   <div
-            //     id="clickable"
-            //     data-tooltip-place="left-start"
-            //     tabIndex={30}
-            //     role="button"
-            //     className="btn btn-ghost btn-circle avatar"
-            //   >
-
-            //   </div>
-            //   <div className="z-[99999999] hidden lg:block bg-white">
-            //     <h1 className="text-white hidden lg:block text-xl font-extrabold">
-            //       {user.displayName}
-            //     </h1>
-            //     <button className="btn capitalize rounded-none" onClick={() => logOut(auth)}>click me to logout!</button>
-            //   </div>
-            //   <ul
-            //     tabIndex={999}
-            //     className="menu menu-sm lg:hidden dropdown-content lg:mt-40 z-[999] p-2 shadow bg-base-100 rounded-box w-52"
-            //   >
-            //     <li>
-            //       <h1 className="text-basic block lg:hidden font-extrabold">
-            //         {user.displayName}
-            //       </h1>
-            //     </li>
-            //     <li>
-            //       <a onClick={() => logOut(auth)}>Logout</a>
-            //     </li>
-            //   </ul>
-            // </div>
             <div className="lg:relative absolute lg:right-0 right-16">
               <Link
                 to={"/sign-up"}

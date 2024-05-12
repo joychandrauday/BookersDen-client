@@ -151,10 +151,10 @@ const Home = () => {
           </SwiperSlide>
         </Swiper>
       </div>
-      <div className="staT bg-fixed justify-center lg:min-h-[500px] flex items-center">
+      <div className="staT bg-fixed justify-center lg:min-h-[500px] lg:flex items-center">
         <div className="backdrop-blur-lg">
           <div className="lg:flex items-center justify-center">
-            <div className="booksNum flex gap-8 justify-center items-center ">
+            <div className="booksNum flex flex-col lg:flex-row p-8 lg:p-0 gap-8 justify-center items-center ">
               <div className="stat flex items-center flex-row-reverse shadow-lg rounded shadow-black px-16 h-44 content-center">
                 <div className="stat-figure text-primary">
                   <img

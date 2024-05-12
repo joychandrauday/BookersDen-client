@@ -1,11 +1,102 @@
-import React from 'react';
+import React, { useContext } from "react";
+import { useForm } from "react-hook-form";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../Provider/Provider";
+import { AwesomeButton } from "react-awesome-button";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 const LibrarianReg = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+  const {
+    user,
+    librarian
+  } = useContext(AuthContext);
+  console.log(librarian);
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm();
+  const formSumit = async (newLibrarian) => {
+    try {
+      // Create the user
+      const { email, Name, photoURL } = newLibrarian;
+      axios
+      .post("http://localhost:5000/librarians", newLibrarian)
+      .then(function (response) {
+        console.log(response);
+        if (response.data.insertedId) {
+          Swal.fire({
+            position: "center",
+            icon: "success",
+            title: "You are registered as a librarian!!!",
+            showConfirmButton: true,
+          });
+        } else {
+          Swal.fire({
+            position: "center",
+            icon: "error",
+            title: "something went wrong..",
+            showConfirmButton: true,
+          });
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+    } catch (error) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Something went Wrong.",
+      });
+    }
+  };
+  return (
+    <div>
+      <div className="pt-32 container mx-auto">
+        <form
+          className="card-body w-2/5 mx-auto bg-white rounded text-center"
+          onSubmit={handleSubmit(formSumit)}
+        >
+          
+            <div className="form-control">
+              <img src={user?.photoURL} className="rounded-full w-24 mx-auto" alt="" />
+            </div>
+            <div className="form-control ">
+              
+              <input
+                type="text"
+                defaultValue={user?.displayName}
+                placeholder="Name"
+                className="input input-bordered text-center capitalize rounded-none bg-transparent text-black"
+                required
+                {...register("Name")}
+                readOnly
+              />
+            </div>
+            <div className="form-control ">
+              <input
+                type="email"
+                placeholder="email"
+                className="input input-bordered text-center rounded-none bg-transparent "
+                defaultValue={user?.email}
+                {...register("email")}
+                readOnly
+              />
+            </div>
+            <div className="form-control mt-2">
+              <button
+              disabled={librarian}
+               className={librarian?'btn hover:text-basic bg-blue-950 text-black w-full capitalize':"btn hover:text-basic bg-blue-950 w-full capitalize "}>
+                register as librarian.
+              </button>
+            </div>
+        </form>
+      </div>
+    </div>
+  );
 };
 
 export default LibrarianReg;

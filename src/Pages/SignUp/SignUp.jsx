@@ -36,8 +36,7 @@ const SignUp = () => {
         icon: "success",
         title: "You are registered!!!",
         text:"now log in to continue",
-        showConfirmButton: false,
-        timer: 5500
+        showConfirmButton: true,
       });
     } catch (error) {
       Swal.fire({
@@ -47,54 +46,15 @@ const SignUp = () => {
       });
     }
   };
-    // const handleSignUp=(e)=>{
-    //     e.preventDefault()
-    //     const form=e.target;
-    //     const name=form.name.value;
-    //     const image=form.image.value;
-    //     const email=form.email.value;
-    //     const password=form.password.value;
-    //     userSignUp(email,password)
-    //     .then((userCredential) => {
-    //         // Signed up 
-    //         const user = userCredential.user;
-    //         if(user){
-    //             Swal.fire({
-    //                 position: "center",
-    //                 icon: "success",
-    //                 title: "Your account has created successfully!!",
-    //                 showConfirmButton: true,
-                    
-    //             });
-    //             logOut(auth)
-    //             updateUser(name,image)
-    //             navigate('/sign-in');
-    //         }
-    //         // ...
-    //       })
-    //       .catch((error) => {
-    //         const errorCode = error.code;
-    //         const errorMessage = error.message;
-    //         console.log(errorMessage)
-    //         if(error){
-    //             Swal.fire({
-    //                 icon: "error",
-    //                 title: "Oops...",
-    //                 text: "Use Another email.",
-    //               });
-    //         }
-    //         // ..
-    //       });
-        
-    // }
+    
   return (
     <div className="bg-newsletter bg-center lg:min-h-screen items-center flex p-4">
       <Helmet>
         <title>Sign Up here.</title>
       </Helmet>
-      <div className="container mx-auto card max-w-4xl shadow-2xl lg:*:bg-base-100 ">
-        <h1 className="lg:text-3xl text-2xl capitalize font-bold text-white">register your account here</h1>
-        <form className="card-body lg:grid grid-cols-2" onSubmit={handleSubmit(formSumit)}>
+      <div className="container mx-auto card max-w-4xl shadow-2xl lg:*:bg-base-100 rounded">
+        <h1 className="lg:text-3xl text-2xl px-8 pt-8 capitalize font-bold text-white">register your account here</h1>
+        <form className="card-body pt-0 lg:grid grid-cols-2" onSubmit={handleSubmit(formSumit)}>
           <div className="basis-1/2">
               <div className="form-control">
               <label className="label">
