@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Rating } from "@smastrom/react-rating";
 
 import "@smastrom/react-rating/style.css";
 import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../Provider/Provider";
 
 const SingleBookCard = ({ book }) => {
   const {
@@ -19,7 +20,7 @@ const SingleBookCard = ({ book }) => {
     userEmail,
     userName,
   } = book;
-
+  const {librarian}=useContext(AuthContext);
   return (
     <div>
       <div className="card border cursor-pointer bg-white relative rounded-none shadow-xl">
@@ -46,9 +47,10 @@ const SingleBookCard = ({ book }) => {
             <AwesomeButton className="w-full" type="primary">
               <Link to={`/book/${_id}`}>View details</Link>
             </AwesomeButton>
-            <AwesomeButton className="w-full" type="primary">
-            <Link to={`/book/update/${_id}`}>Update Book</Link>
+            <AwesomeButton disabled={!librarian} className="w-full" type="primary">
+            <Link to={librarian?`/book/update/${_id}`:''}>Update Book</Link>
             </AwesomeButton>
+            
           </div>
         </div>
       </div>

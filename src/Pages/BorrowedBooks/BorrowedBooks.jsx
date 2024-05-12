@@ -17,7 +17,7 @@ const BorrowedBooks = () => {
   }, []);
   return (
     <div>
-        <div className={borrowedBooks.length>0 ?"lg:pt-32":''}>
+        <div className={borrowedBooks.length>0 ?"lg:pt-32 ":''}>
             {
               borrowedBooks.length>0 ? 
               <div>
@@ -28,9 +28,9 @@ const BorrowedBooks = () => {
                   }
               </div>
                 </div>
-              :<div className='flex min-h-screen items-center flex-col justify-center'>
+              :<div className='flex p-12 lg:min-h-screen text-center  items-center flex-col justify-center'>
                 <img src="https://i.ibb.co/McLzr4x/2.gif" alt="" className='w-44 mx-auto rounded '/>
-                <h1 className="capitalize font-bold text-4xl text-white py-3">you didn't borrow any book.</h1>
+                <h1 className="capitalize font-bold lg:text-4xl text-2xl text-white py-3">you didn't borrow any book.</h1>
                 <AwesomeButton className='capitalize'>
                         <Link to={'/all-books'}>
                             borrow now

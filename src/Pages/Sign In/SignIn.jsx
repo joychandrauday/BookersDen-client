@@ -91,7 +91,7 @@ const SignIn = () => {
       <Helmet>
         <title>Sign in to Continue.</title>
       </Helmet>
-      <div className="hero bg-basic-bg lg:min-h-screen pt-32">
+      <div className="hero bg-basic-bg lg:min-h-screen lg:pt-32">
         {user ? (
           <div className="p-4 backdrop-blur-sm glass">
             <h1
@@ -103,7 +103,7 @@ const SignIn = () => {
             </h1>
           </div>
         ) : (
-          <div className="hero-content w-2/5">
+          <div className="hero-content lg:w-2/5">
             <div className="text-center lg:text-left w-full shadow-2xl bg-base-100 p-8 rounded">
               <h1 className="text-2xl font-bold">Login now!</h1>
               <form className="" onSubmit={handleSignIn}>
@@ -149,7 +149,7 @@ const SignIn = () => {
                 </div>
               </form>
               <div className="flex items-center justify-center pt-4 gap-3">
-                <h1 className="capitalize font-bold">or, continue with: </h1>
+                <h1 className="capitalize lg:text-sm text-[12px] font-bold">or, continue with: </h1>
                 <AwesomeButton
                   size="small"
                   type="primary"

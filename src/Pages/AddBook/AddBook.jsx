@@ -72,8 +72,8 @@ const AddBook = () => {
         <title>Add A New Book</title>
       </Helmet>
       <div className="container mx-auto p-4">
-        <h1 className="text-2xl font-extrabold capitalize text-center pb-8">
-          Add a New Destination
+        <h1 className="text-2xl fo nt-extrabold capitalize text-center pb-8">
+          Add a New Book
         </h1>
         <form
           onSubmit={handleSubmit}
