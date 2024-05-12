@@ -33,8 +33,9 @@ const BorrowedBookCard = ({ book }) => {
                     icon: "success",
                     title: "Your Book has been returned.",
                     showConfirmButton: true,
-                });
-                window.location.reload()
+                  });
+                  
+                  window.location.reload()
               // Update the state with the new book numbers
             })
             .catch((error) =>
@@ -64,9 +65,9 @@ const BorrowedBookCard = ({ book }) => {
             className="w-44 shadow-md  shadow-black"
           />
         </figure>
-        <div className="badge badge-warning font-semibold rounded-none absolute capitalize">
+        <Link to={`/genre/${book?.book.genre}`} className="badge badge-warning font-semibold rounded-none absolute capitalize">
           {book?.book.genre}
-        </div>
+        </Link>
         <div className="card-body">
           <h2 className="card-title text-black">{book?.book.book_name}</h2>
           <p>

@@ -8,6 +8,7 @@ import { AwesomeButton } from "react-awesome-button";
 import "react-awesome-button/dist/styles.css";
 import { AuthContext } from "../../Provider/Provider";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const BookDetailsPage = () => {
   const bookId = useParams();
@@ -118,12 +119,15 @@ const BookDetailsPage = () => {
   };
 
   return (
-    <div className="pt-32">
-      <div className="lg:flex gap-4 container mx-auto">
-        <div className="text-center justify-center basis-1/3 px-16">
+    <div className="lg:pt-32 pb-8">
+      <Helmet>
+        <title>{book?.book_name }</title>
+      </Helmet>
+      <div className="lg:flex  gap-4 container mx-auto">
+        <div className="text-center pb-8 justify-center basis-1/3 px-16">
           <div className="flex justify-center ralative">
             <img src={image} alt="" className="w-72" />
-            <span className="badge badge-accent absolute left-16 -rotate-45">
+            <span className="badge badge absolute left-16 lg:-rotate-45">
               copies left {bookNumbers}
             </span>
           </div>
@@ -204,7 +208,7 @@ const BookDetailsPage = () => {
           </dialog>
           {/* modal */}
         </div>
-        <div className="basis-2/3">
+        <div className="basis-2/3 p-4">
           <div role="tablist" className="tabs tabs-lifted">
             <input
               type="radio"

@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/Provider";
+import { Helmet } from "react-helmet-async";
 
 const AllBooks = () => {
   const [allBooks, setAllBooks] = useState([]);
@@ -44,6 +45,9 @@ const AllBooks = () => {
 
   return (
     <div className="lg:pt-32 pt-4">
+        <Helmet>
+            <title>All books page.</title>
+        </Helmet>
       <h1 className="text-3xl text-center capitalize font-bold">all books</h1>
       <div className="flex justify-center gap-4 my-4 mb-12">
         <button

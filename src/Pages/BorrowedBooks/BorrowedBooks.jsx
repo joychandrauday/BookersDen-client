@@ -4,6 +4,7 @@ import { AuthContext } from './../../Provider/Provider';
 import BorrowedBookCard from "./BorrowedBookCard";
 import { Link } from "react-router-dom";
 import { AwesomeButton } from "react-awesome-button";
+import { Helmet } from "react-helmet-async";
 const BorrowedBooks = () => {
     const {user}=useContext(AuthContext)
     const [borrowedBooks,setBorrowedBooks]=useState([])
@@ -17,12 +18,15 @@ const BorrowedBooks = () => {
   }, []);
   return (
     <div>
-        <div className={borrowedBooks.length>0 ?"lg:pt-32 ":''}>
+      <Helmet>
+        <title>Books you have borrowed.</title>
+      </Helmet>
+        <div className={borrowedBooks.length>0 ?"lg:pt-32 pb-8":''}>
             {
               borrowedBooks.length>0 ? 
               <div>
-                  <h1 className="text-center font-bold text-3xl">Borrowed Books</h1>
-                  <div className="lg:grid grid-cols-3 gap-4 container mx-auto">
+                  <h1 className="text-center font-bold text-3xl pb-8">Books You Have Borrowed.({borrowedBooks.length})</h1>
+                  <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 p-4 gap-4 container mx-auto">
                   {
                       borrowedBooks.map(book=><BorrowedBookCard key={book._id} book={book}></BorrowedBookCard>)
                   }
