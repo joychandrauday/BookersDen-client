@@ -17,6 +17,7 @@ const AllBooks = () => {
 
     const toggleShowAvailableBooks = () => {
         setShowAvailableBooks(!showAvailableBooks);
+        console.log("showAvailableBooks:", showAvailableBooks);
     };
 
     const handleChangeViewMode = (mode) => {
@@ -27,9 +28,9 @@ const AllBooks = () => {
         <div className='pt-32'>
             <h1 className="text-3xl text-center capitalize font-bold">all books</h1>
             <div className="flex justify-center gap-4 my-4 mb-12">
-                <AwesomeButton className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={toggleShowAvailableBooks}>
+                <button className="bg-blue-500 rounded-none hover:bg-blue-700 text-white font-bold py-2 px-4" onClick={toggleShowAvailableBooks}>
                     {showAvailableBooks ? "Show All Books" : "Show Available Books"}
-                </AwesomeButton>
+                </button>
                 <div className="">
                     
                     <select
@@ -46,7 +47,7 @@ const AllBooks = () => {
                 {
                     viewMode === 'card' ?
                         allBooks
-                            .filter(book => !showAvailableBooks || book.book_numbers > 0) // Filter available books if showAvailableBooks is true
+                            .filter(book => !showAvailableBooks || book.book_numbers > 0)
                             .map(book => <SingleBookCard key={book._id} book={book}></SingleBookCard>)
                         :
                         <table className="table table-zebra w-full text-xl text-left">
