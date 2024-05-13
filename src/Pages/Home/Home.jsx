@@ -23,14 +23,14 @@ const Home = () => {
   const [books, setTotalBooks] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/genre")
+      .get("https://bookersdenserver.vercel.app/genre")
       .then((data) => setGenre(data?.data));
     console.log(genre);
   }, []);
 
   useEffect(() => {
     axios
-      .get("http://localhost:5000/allbooks")
+      .get("https://bookersdenserver.vercel.app/allbooks")
       .then((data) => setTotalBooks(data?.data));
     console.log(genre);
   }, []);

@@ -32,7 +32,7 @@ const Header = () => {
   //   const fetchLibrarianData = async () => {
   //     try {
   //       // Make request to server endpoint with user's email
-  //       const response = await axios.get(`http://localhost:5000/librarian/${user?.email}`);
+  //       const response = await axios.get(`https://bookersdenserver.vercel.app/librarian/${user?.email}`);
   //       // Check if librarian data exists
   //       setLibrarian(!!response.data);
   //     } catch (error) {

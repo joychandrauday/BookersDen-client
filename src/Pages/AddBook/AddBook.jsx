@@ -41,7 +41,7 @@ const AddBook = () => {
     };
 
     axios
-      .post("http://localhost:5000/allbooks", newBook)
+      .post("https://bookersdenserver.vercel.app/allbooks", newBook)
       .then(function (response) {
         console.log(response);
         if (response.data.insertedId) {

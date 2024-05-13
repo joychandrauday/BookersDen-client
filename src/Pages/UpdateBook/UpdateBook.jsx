@@ -41,7 +41,7 @@ const UpdateBook = () => {
     };
 
     fetch(
-      `http://localhost:5000/book/update/${book._id}`,
+      `https://bookersdenserver.vercel.app/book/update/${book._id}`,
       {
         method: "PUT",
         headers: {

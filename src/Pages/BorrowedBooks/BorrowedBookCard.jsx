@@ -17,11 +17,11 @@ const BorrowedBookCard = ({ book }) => {
   const handleReturnBook = (bookId) => {
     console.log(bookId);
     axios
-      .delete(`http://localhost:5000/borrowed-book/${bookId}`)
+      .delete(`https://bookersdenserver.vercel.app/borrowed-book/${bookId}`)
       .then(function (response) {
         if (response.data.deletedCount > 0) {
           // Update book numbers
-          axios.patch(`http://localhost:5000/book/${book_id}`, {
+          axios.patch(`https://bookersdenserver.vercel.app/book/${book_id}`, {
               book_numbers: bookNumbers,
             })
             .then((response) => {

@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         {
           path: "/book/update/:id",
           element: <PrivateRoute><UpdateBook></UpdateBook></PrivateRoute>,
-          loader:({params})=>fetch(`http://localhost:5000/book/${params.id}`)
+          loader:({params})=>fetch(`https://bookersdenserver.vercel.app/book/${params.id}`)
         },
         {
           path: "/all-books",
@@ -64,7 +64,7 @@ const router = createBrowserRouter([
         {
           path: "/genre/:name",
           element:<GenreWiseBooks></GenreWiseBooks>,
-          loader:({params})=>fetch(`http://localhost:5000/genre/${params.name}`),
+          loader:({params})=>fetch(`https://bookersdenserver.vercel.app/genre/${params.name}`),
         },
       ],
     },

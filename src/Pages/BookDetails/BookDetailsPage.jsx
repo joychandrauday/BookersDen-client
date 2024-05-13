@@ -9,6 +9,46 @@ import "react-awesome-button/dist/styles.css";
 import { AuthContext } from "../../Provider/Provider";
 import Swal from "sweetalert2";
 import { Helmet } from "react-helmet-async";
+import generatePDF, { Resolution, Margin } from 'react-to-pdf';
+
+const options = {
+   // default is `save`
+   method: 'open',
+   // default is Resolution.MEDIUM = 3, which should be enough, higher values
+   // increases the image quality but also the size of the PDF, so be careful
+   // using values higher than 10 when having multiple pages generated, it
+   // might cause the page to crash or hang.
+   resolution: Resolution.HIGH,
+   page: {
+      // margin is in MM, default is Margin.NONE = 0
+      margin: Margin.SMALL,
+      // default is 'A4'
+      format: 'letter',
+      // default is 'portrait'
+      orientation: 'landscape',
+   },
+   canvas: {
+      // default is 'image/jpeg' for better size performance
+      mimeType: 'image/png',
+      qualityRatio: 1
+   },
+   // Customize any value passed to the jsPDF instance and html2canvas
+   // function. You probably will not need this and things can break, 
+   // so use with caution.
+   overrides: {
+      // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
+      pdf: {
+         compress: true
+      },
+      // see https://html2canvas.hertzen.com/configuration for more options
+      canvas: {
+         useCORS: true
+      }
+   },
+};
+
+// you can use a function to return the target element besides using React refs
+const getTargetElement = () => document.getElementById('content-id');
 
 const BookDetailsPage = () => {
   const bookId = useParams();
@@ -20,7 +60,7 @@ const BookDetailsPage = () => {
   const [borrowedTrue, setBorrowedTrue] = useState(false);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/borrowed-books?email=${user?.email}`)
+      .get(`https://bookersdenserver.vercel.app/borrowed-books?email=${user?.email}`)
       .then((response) => {
         const borrowedBooks = response.data;
         const isIdPresent = borrowedBooks.some((book) => book?.book._id === id);
@@ -33,18 +73,13 @@ const BookDetailsPage = () => {
   }, [id, user?.email]);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/book/${bookId.id}`).then((data) => {
+    axios.get(`https://bookersdenserver.vercel.app/book/${bookId.id}`).then((data) => {
       setBook(data.data);
       setBookNumbers(data.data.book_numbers);
     });
   }, []);
 
-  // Initialize borrowedTrue state based on the initial value of borrowedBooks
-  // useEffect(() => {
-  //   const isIdPresent = borrowedBooks.some((book) => book?.bookId === id);
-  //   setBorrowedTrue(isIdPresent);
-  //   console.log(isIdPresent);
-  // }, [borrowedBooks, id]);
+  
 
   const {
     image,
@@ -74,12 +109,12 @@ const BookDetailsPage = () => {
     };
 
     axios
-      .post("http://localhost:5000/borrowed-books", borrowedDetails)
+      .post("https://bookersdenserver.vercel.app/borrowed-books", borrowedDetails)
       .then(function (response) {
         if (response.data.insertedId) {
           // Update book numbers
           axios
-            .patch(`http://localhost:5000/book/${bookId}`, {
+            .patch(`https://bookersdenserver.vercel.app/book/${bookId}`, {
               book_numbers: bookNumbers - 1,
             })
             .then((response) => {

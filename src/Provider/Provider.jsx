@@ -32,7 +32,7 @@ const Provider = ({ children }) => {
         if (user) {
           // Make request to server endpoint with user's email
           const response = await axios.get(
-            `http://localhost:5000/librarian/${user.email}`
+            `https://bookersdenserver.vercel.app/librarian/${user.email}`
           );
           // Check if librarian data exists
           setLibrarian(!!response.data);
@@ -59,6 +59,13 @@ const Provider = ({ children }) => {
       console.log("user", currentUser);
       setUser(currentUser);
       setLoading(false);
+      if(currentUser){
+        const loggedUser={email: currentUser.email}
+        axios.post(loggedUser,{withCredintials:true})
+        .then(res=>{
+            console.log(res.data);
+        })
+      }
     });
     return () => {
       unSubscribe;

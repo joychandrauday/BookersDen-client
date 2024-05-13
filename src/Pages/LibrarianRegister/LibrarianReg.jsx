@@ -31,7 +31,7 @@ const LibrarianReg = () => {
       // Create the user
       const { email, Name, photoURL } = newLibrarian;
       axios
-        .post("http://localhost:5000/librarians", newLibrarian)
+        .post("https://bookersdenserver.vercel.app/librarians", newLibrarian)
         .then(function (response) {
           console.log(response);
           if (response.data.insertedId) {

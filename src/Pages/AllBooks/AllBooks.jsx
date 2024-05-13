@@ -15,7 +15,7 @@ const AllBooks = () => {
 
   useEffect(() => {
     // Show toast after component mounts
-    toast.success('To add book, join as librarian!', {
+    toast.success('To add book, join as librarian! (Click Me)', {
       autoClose: true,
       closeButton: false,
       closeOnClick: true,
@@ -30,7 +30,7 @@ const AllBooks = () => {
   };
 
   useEffect(() => {
-    axios.get("http://localhost:5000/allbooks").then((data) => {
+    axios.get("https://bookersdenserver.vercel.app/allbooks").then((data) => {
       setAllBooks(data.data);
     });
   }, []);
