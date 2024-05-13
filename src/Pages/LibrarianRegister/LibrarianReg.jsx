@@ -9,7 +9,6 @@ import { ToastContainer, toast } from "react-toastify";
 
 const LibrarianReg = () => {
   const { user, librarian } = useContext(AuthContext);
-  console.log(librarian);
   useEffect(() => {
     // Show toast after component mounts
     toast.success('Welcome back librarian.', {
@@ -33,7 +32,7 @@ const LibrarianReg = () => {
       axios
         .post("https://bookersdenserver.vercel.app/librarians", newLibrarian)
         .then(function (response) {
-          console.log(response);
+          //console.log(response);
           if (response.data.insertedId) {
             Swal.fire({
               position: "center",

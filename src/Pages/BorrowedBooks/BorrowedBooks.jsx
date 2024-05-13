@@ -12,7 +12,6 @@ const BorrowedBooks = () => {
     axios(`https://bookersdenserver.vercel.app/borrowed-books?email=${user?.email}`).then(
       (data) => {
         setBorrowedBooks(data?.data)
-        console.log(borrowedBooks);
       }
     );
   }, []);

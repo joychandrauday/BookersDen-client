@@ -43,7 +43,6 @@ const AddBook = () => {
     axios
       .post("https://bookersdenserver.vercel.app/allbooks", newBook)
       .then(function (response) {
-        console.log(response);
         if (response.data.insertedId) {
           Swal.fire({
             position: "center",
@@ -62,7 +61,12 @@ const AddBook = () => {
         }
       })
       .catch(function (error) {
-        console.log(error);
+        Swal.fire({
+          position: "center",
+          icon: "error",
+          title: `${error.message}`,
+          showConfirmButton: true,
+        });
       });
   };
 

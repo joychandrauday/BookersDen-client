@@ -7,7 +7,7 @@ const GenreWiseBooks = () => {
     const books=useLoaderData();
     const genreName=useParams()
     const [librarian,setLibrarian]=useState(true)
-    console.log(books)
+    //console.log(books)
     return (
         <div >
             {

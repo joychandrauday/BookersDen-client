@@ -15,7 +15,6 @@ const BorrowedBookCard = ({ book }) => {
   const formattedBorrowedDate = parsedBorrowedDate.toISOString().split("T")[0];
 
   const handleReturnBook = (bookId) => {
-    console.log(bookId);
     axios
       .delete(`https://bookersdenserver.vercel.app/borrowed-book/${bookId}`)
       .then(function (response) {
@@ -27,7 +26,6 @@ const BorrowedBookCard = ({ book }) => {
             .then((response) => {
               // Log the updated book numbers
 
-                console.log("Updated Book Numbers:", bookNumbers + 1);
                 Swal.fire({
                     position: "center",
                     icon: "success",

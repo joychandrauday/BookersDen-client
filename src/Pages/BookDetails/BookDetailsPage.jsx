@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import  { useContext, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Rating } from "@smastrom/react-rating";
 import "./styles.css";
@@ -119,7 +119,7 @@ const BookDetailsPage = () => {
             })
             .then((response) => {
               // Log the updated book numbers
-              console.log("Updated Book Numbers:", bookNumbers - 1);
+              // console.log("Updated Book Numbers:", bookNumbers - 1);
               // Update the state with the new book numbers
               setBookNumbers(bookNumbers - 1);
             })

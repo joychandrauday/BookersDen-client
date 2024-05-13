@@ -25,14 +25,12 @@ const Home = () => {
     axios
       .get("https://bookersdenserver.vercel.app/genre")
       .then((data) => setGenre(data?.data));
-    console.log(genre);
   }, []);
 
   useEffect(() => {
     axios
       .get("https://bookersdenserver.vercel.app/allbooks")
       .then((data) => setTotalBooks(data?.data));
-    console.log(genre);
   }, []);
 
   return (

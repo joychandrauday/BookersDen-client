@@ -37,7 +37,7 @@ const SignUp = () => {
       const { email, password, Name, photoURL } = data;
       const newUser = await userSignUp(email, password);
       signOut(auth);
-      console.log("User created:", newUser);
+      //console.log("User created:", newUser);
 
       // Update the user profile
       await updateUser(Name, photoURL);
