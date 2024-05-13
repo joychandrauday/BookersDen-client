@@ -18,20 +18,8 @@ Welcome to Bookers Den, your online destination for all things related to books 
 5. Enjoy convenient ordering and fast delivery of your chosen books right to your doorstep.
 
 ## Librarian Access:
-Librarian Email: <span id="email">michael@librarian.com</span> <button onclick="copyToClipboard('email')">Copy</button>  
-Password: <span id="password">Aaaaaa</span> <button onclick="copyToClipboard('password')">Copy</button>
+Librarian Email: <span id="email">[LIBRARIAN_EMAIL]</span> <button onclick="copyToClipboard('email')">Copy</button>  
+Password: <span id="password">[LIBRARIAN_PASSWORD]</span> <button onclick="copyToClipboard('password')">Copy</button>
+or, visit [Register as librarian.](https://bookersden.web.app/librarian-registration)
 
 Experience the joy of reading with Bookers Den. Happy reading!
-
-<script>
-function copyToClipboard(id) {
-  var copyText = document.getElementById(id);
-  var textArea = document.createElement("textarea");
-  textArea.value = copyText.textContent;
-  document.body.appendChild(textArea);
-  textArea.select();
-  document.execCommand("Copy");
-  textArea.remove();
-  alert("Copied to clipboard: " + copyText.textContent);
-}
-</script>

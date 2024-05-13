@@ -1,13 +1,32 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title></title>
-  </head>
-  <body class="font-dm">
-    <div id="root"></div>
-    <script type="module" src="/src/main.jsx"></script>
-  </body>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookers Den</title>
+</head>
+<body>
+    <div id="content">
+        <!-- Markdown content converted to HTML -->
+        <!-- Include the generated HTML content of your README.md file here -->
+        <!-- For simplicity, you can manually copy the generated HTML content here -->
+    </div>
+    
+    <script>
+        function copyToClipboard(id) {
+            var copyText = document.getElementById(id);
+            var textArea = document.createElement("textarea");
+            textArea.value = copyText.textContent;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand("copy");
+            textArea.remove();
+            alert("Copied to clipboard: " + copyText.textContent);
+        }
+
+        // Replace [LIBRARIAN_EMAIL] and [LIBRARIAN_PASSWORD] with actual values
+        document.getElementById('email').textContent = 'michael@librarian.com';
+        document.getElementById('password').textContent = 'Aaaaaa';
+    </script>
+</body>
 </html>
