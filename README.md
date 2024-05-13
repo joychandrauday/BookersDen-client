@@ -18,9 +18,10 @@ Welcome to Bookers Den, your online destination for all things related to books 
 5. Enjoy convenient ordering and fast delivery of your chosen books right to your doorstep.
 
 ## Librarian Access:
-1.Librarian Email: michael@librarian.com .
-2.Password: Aaaaaa .
-3.Or, visit [Register as librarian.](https://bookersden.web.app/librarian-registration)
+1. Librarian Email: michael@librarian.com
+2. Password: Aaaaaa
+3. Or, visit [Register as librarian](https://bookersden.web.app/librarian-registration).
+
 
 
 Experience the joy of reading with Bookers Den. Happy reading!
