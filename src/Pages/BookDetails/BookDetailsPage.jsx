@@ -60,7 +60,7 @@ const BookDetailsPage = () => {
   const [borrowedTrue, setBorrowedTrue] = useState(false);
   useEffect(() => {
     axios
-      .get(`https://bookersdenserver.vercel.app/borrowed-books?email=${user?.email}`)
+      .get(`https://bookersdenserver.vercel.app/borrowed-books-of?email=${user?.email}`)
       .then((response) => {
         const borrowedBooks = response.data;
         const isIdPresent = borrowedBooks.some((book) => book?.book._id === id);
@@ -95,13 +95,13 @@ const BookDetailsPage = () => {
     e.preventDefault(); // Prevent form submission
 
     const form = e.target;
-    const userEmail = form.userEmail.value;
+    const email = form.userEmail.value;
     const userName = form.userName.value;
     const returnDate = form.date.value;
     const borrowedDate = new Date().toISOString();
     const bookId = book._id;
     const borrowedDetails = {
-      userEmail,
+      email,
       userName,
       borrowedDate,
       returnDate,

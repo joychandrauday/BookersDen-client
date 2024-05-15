@@ -9,7 +9,9 @@ const BorrowedBooks = () => {
     const {user}=useContext(AuthContext)
     const [borrowedBooks,setBorrowedBooks]=useState([])
   useEffect(() => {
-    axios(`https://bookersdenserver.vercel.app/borrowed-books?email=${user?.email}`).then(
+    axios(`https://bookersdenserver.vercel.app/borrowed-books-of?email=${user?.email}`,{
+      withCredentials:true,
+    }).then(
       (data) => {
         setBorrowedBooks(data?.data)
       }

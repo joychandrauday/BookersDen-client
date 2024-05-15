@@ -58,16 +58,29 @@ const Provider = ({ children }) => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);
-      if(currentUser){
-        const loggedUser={email: currentUser.email}
-        axios.post(loggedUser,{withCredintials:true})
-        .then(res=>{
+      const userEmail= currentUser?.email || user?.email
+      const loggedUser = { email: userEmail };
+      if (currentUser) {
+        axios
+          .post("https://bookersdenserver.vercel.app/jwt", loggedUser, {
+            withCredentials: true,
+          })
+          .then((res) => {
             console.log(res.data);
-        })
+          });
+        }else{
+          axios
+            .post("https://bookersdenserver.vercel.app/logout", loggedUser, {
+              withCredentials: true,
+            })
+            .then((res) => {
+              console.log(res.data);
+            });
+
       }
     });
     return () => {
-      unSubscribe;
+      unSubscribe();
     };
   }, [reload]);
   const signInUser = (email, password) => {

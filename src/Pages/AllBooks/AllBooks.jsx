@@ -6,27 +6,30 @@ import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../Provider/Provider";
 import { Helmet } from "react-helmet-async";
+import { FaDeleteLeft } from "react-icons/fa6";
+import Swal from "sweetalert2";
 
 const AllBooks = () => {
   const [allBooks, setAllBooks] = useState([]);
   const [showAvailableBooks, setShowAvailableBooks] = useState(false);
-  const [viewMode, setViewMode] = useState("card");  const {librarian}=useContext(AuthContext)
+  const [viewMode, setViewMode] = useState("card");
+  const { librarian } = useContext(AuthContext);
   const navigate = useNavigate();
 
   useEffect(() => {
     // Show toast after component mounts
-    toast.success('To add book, join as librarian! (Click Me)', {
+    toast.success("To add book, join as librarian! (Click Me)", {
       autoClose: true,
       closeButton: false,
       closeOnClick: true,
       draggable: false,
-      customId: 'custom-toast-id',
-      onClick: () => handleToastClose()
+      customId: "custom-toast-id",
+      onClick: () => handleToastClose(),
     });
   }, []);
-  
+
   const handleToastClose = () => {
-    navigate('/librarian-registration')
+    navigate("/librarian-registration");
   };
 
   useEffect(() => {
@@ -42,19 +45,55 @@ const AllBooks = () => {
   const handleChangeViewMode = (mode) => {
     setViewMode(mode);
   };
+  const handleDeleteBook = (id) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      axios
+        .delete(`https://bookersdenserver.vercel.app/book/${id}`)
+        .then((response) => {
+          const data = response.data;
+          if (data.deletedCount > 0) {
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Your book has been deleted.",
+                icon: "success",
+              });
+            }
+            
+          }
+        })
+        .catch((error) => {
+          // Handle errors
+          console.error("Error deleting book:", error);
+          Swal.fire({
+            title: "Error",
+            text: "An error occurred while deleting the book.",
+            icon: "error",
+          });
+        });
+    });
+  };
 
   return (
     <div className="lg:pt-32 pt-4">
-        <Helmet>
-            <title>All books page.</title>
-        </Helmet>
+      <Helmet>
+        <title>All books page.</title>
+      </Helmet>
       <h1 className="text-3xl text-center capitalize font-bold">all books</h1>
       <div className="flex justify-center gap-4 my-4 mb-12">
         <button
           className="bg-blue-500 rounded-none hover:bg-blue-700 text-white font-bold py-2 px-4"
           onClick={toggleShowAvailableBooks}
         >
-          {showAvailableBooks ? "Show All Books" :"Show Available Books"}
+          {showAvailableBooks ? "Show All Books" : "Show Available Books"}
         </button>
         <div className="">
           <select
@@ -81,7 +120,7 @@ const AllBooks = () => {
               <SingleBookCard key={book._id} book={book}></SingleBookCard>
             ))
         ) : (
-            <div className="table-container overflow-x-scroll">
+          <div className="table-container overflow-x-scroll">
             <table className="table table-zebra w-full text-xl text-left ">
               <thead>
                 <tr className="text-xl">
@@ -90,11 +129,14 @@ const AllBooks = () => {
                   <th>Author</th>
                   <th>Genre</th>
                   <th className="text-center">Available Books</th>
+                  <th className="text-center">Action</th>
                 </tr>
               </thead>
               <tbody className="">
                 {allBooks
-                  .filter((book) => !showAvailableBooks || book.book_numbers > 0) 
+                  .filter(
+                    (book) => !showAvailableBooks || book.book_numbers > 0
+                  )
                   .map((book, index) => (
                     <tr key={book._id} className="overflow-x-scroll">
                       <th className="text-center">{index + 1}</th>
@@ -102,6 +144,11 @@ const AllBooks = () => {
                       <td>{book.author?.author_name}</td>
                       <td>{book.genre}</td>
                       <td className="text-center">{book.book_numbers}</td>
+                      <td className="text-center">
+                        <button onClick={() => handleDeleteBook(book?._id)}>
+                          <FaDeleteLeft></FaDeleteLeft>{" "}
+                        </button>
+                      </td>
                     </tr>
                   ))}
               </tbody>
@@ -109,18 +156,19 @@ const AllBooks = () => {
           </div>
         )}
       </div>
-      {
-        librarian?
-        '':<ToastContainer
-        style={{ zIndex: "99999" }}
-        closeButton={true}
-        autoClose={5000} 
-        pauseOnHover={true}
-        closeOnClick={true} 
-        draggable={true}
-        position="top-right"
-      />
-      }
+      {librarian ? (
+        ""
+      ) : (
+        <ToastContainer
+          style={{ zIndex: "99999" }}
+          closeButton={true}
+          autoClose={5000}
+          pauseOnHover={true}
+          closeOnClick={true}
+          draggable={true}
+          position="top-right"
+        />
+      )}
     </div>
   );
 };

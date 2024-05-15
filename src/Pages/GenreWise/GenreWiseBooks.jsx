@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLoaderData, useParams } from 'react-router-dom';
 import SingleBookCard from '../SingleBookCard/SingleBookCard';
 import { AwesomeButton } from 'react-awesome-button';
+import { AuthContext } from '../../Provider/Provider';
 
 const GenreWiseBooks = () => {
     const books=useLoaderData();
     const genreName=useParams()
-    const [librarian,setLibrarian]=useState(true)
+    const {librarian}=useContext(AuthContext)
     //console.log(books)
     return (
         <div >
@@ -14,7 +15,7 @@ const GenreWiseBooks = () => {
                 books.length>0? 
                 <div className="container mx-auto py-32">
                     <h1 className="font-bold capitalize text-bold text-3xl py-5">
-                        all {genreName?.name} books.
+                        all {genreName?.name} books.({books?.length})
                     </h1>
                     <div className="lg:grid grid-cols-3 gap-4">
                         {
