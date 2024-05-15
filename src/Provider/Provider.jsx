@@ -32,7 +32,9 @@ const Provider = ({ children }) => {
         if (user) {
           // Make request to server endpoint with user's email
           const response = await axios.get(
-            `https://bookersdenserver.vercel.app/librarian/${user.email}`
+            `https://bookersdenserver.vercel.app/librarian/${user.email}`,{
+              withCredentials:true
+            }
           );
           // Check if librarian data exists
           setLibrarian(!!response.data);
@@ -66,7 +68,7 @@ const Provider = ({ children }) => {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
           });
         }else{
           axios
@@ -74,7 +76,7 @@ const Provider = ({ children }) => {
               withCredentials: true,
             })
             .then((res) => {
-              console.log(res.data);
+              // console.log(res.data);
             });
 
       }

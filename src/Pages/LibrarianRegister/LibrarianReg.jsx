@@ -50,7 +50,7 @@ const LibrarianReg = () => {
           }
         })
         .catch(function (error) {
-          console.log(error);
+          // console.log(error);
         });
     } catch (error) {
       Swal.fire({

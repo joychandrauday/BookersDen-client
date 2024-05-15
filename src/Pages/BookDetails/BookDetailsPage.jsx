@@ -60,8 +60,11 @@ const BookDetailsPage = () => {
   const [borrowedTrue, setBorrowedTrue] = useState(false);
   useEffect(() => {
     axios
-      .get(`https://bookersdenserver.vercel.app/borrowed-books-of?email=${user?.email}`)
+      .get(`https://bookersdenserver.vercel.app/borrowed-books-of?email=${user?.email}`,{
+        withCredentials:true
+      })
       .then((response) => {
+        console.log(response.data);
         const borrowedBooks = response.data;
         const isIdPresent = borrowedBooks.some((book) => book?.book._id === id);
         setBorrowedTrue(isIdPresent);
@@ -71,9 +74,11 @@ const BookDetailsPage = () => {
         console.error("Error fetching borrowed books:", error);
       });
   }, [id, user?.email]);
-
+  console.log(borrowedBooks,user.email);
   useEffect(() => {
-    axios.get(`https://bookersdenserver.vercel.app/book/${bookId.id}`).then((data) => {
+    axios.get(`https://bookersdenserver.vercel.app/book/${bookId.id}`,{
+      withCredentials:true
+    }).then((data) => {
       setBook(data.data);
       setBookNumbers(data.data.book_numbers);
     });

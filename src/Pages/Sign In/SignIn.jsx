@@ -48,7 +48,7 @@ const SignIn = () => {
       })
       .catch((error) => {
         const errorMessage = error.message;
-        console.log(errorMessage);
+        // console.log(errorMessage);
         if (error) {
           Swal.fire({
             icon: "error",
