@@ -1,7 +1,6 @@
 # Bookers Den
 [Bookers Den](https://bookersden.web.app/)
-# Bookers Den Server
-[server](https://github.com/joychandrauday/bookersden-server/)
+# [Bookers Den Server](https://github.com/joychandrauday/bookersden-server/)
 
 ## Welcome to Bookers Den, your online destination for all things related to books and literature. Visit our website at [Bookers Den](https://bookersden.web.app/).
 
